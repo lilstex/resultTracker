@@ -16,20 +16,20 @@ $ cd result-tracker
 
 Set up your origin and upstream remotes by running the following commands
 ```bash
-git remote add origin git://github.com/{YOUR-GITHUB-USERNAME}/resultTracker.git
+git remote add origin https://github.com/{YOUR-GITHUB-USERNAME}/resultTracker.git
 
-git remote add upstream git://github.com/dscimsu/resultTracker.git
+git remote add upstream https://github.com/dscimsu/resultTracker.git
 
 ```
 
 Pull the code to Your project directory and set it up by running the following command
 ```bash
 git fetch upstream
-git checkout develop
+git checkout master
 npm install
 node index
  
-// Then go to your browser and and type http://localhost:3000/ 
+// Then go to your browser and and type http://localhost:5000/ 
 ```
 After contributing based on a specified issue, run the following commands after commiting changes
 ```bash
