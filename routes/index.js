@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'ResultTracker' });
 });
 
+router.get('/app', function(req, res, next) {
+  res.render('app');
+});
+
 module.exports = router;
