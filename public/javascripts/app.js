@@ -4,19 +4,16 @@
     'use strict';
     let form = document.getElementById('form');
     let mainCard = document.getElementById('main');
-    document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', ()=>{
 
-    // //changing the background color with the mousemoves
-    //     let mousemove = document.querySelector('#main');
-    //     mousemove.addEventListener('mousemove',movemouse);
-    // function movemouse(e){
-    //     document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 470)`;
-    // }
+    
 
 
-    //validation the loop number input
-    let button = document.getElementById('button');
+    //validation of the loop number input
+let button = document.getElementById('button');
         let loopinput = document.getElementById('loopNumber');
+        let semester = document.getElementById('semester');
+        let year = document.getElementById('year');
         button.disabled = true;
         loopinput.addEventListener('keyup',()=>{
             if(loopinput.value === ''){
@@ -28,9 +25,9 @@
             }
         
         });
-    button.addEventListener('click',buttonClick);
-    //function for creating the input and calculate button
-    function buttonClick(e){
+button.addEventListener('click',buttonClick);
+    //function that triggers all functionalities
+function buttonClick(e){
         e.preventDefault(); 
     let loopNumber = parseInt(document.getElementById('loopNumber').value, 10);
     let title = document.querySelector('.title');
@@ -45,20 +42,29 @@
         courseInput.className = 'btn btn-outline-primary mt-sm-2';
         unitInput.className = 'btn btn-outline-primary mt-sm-2';
         gradeInput.className = `btn btn-outline-primary  `;
+        courseInput.style.color = 'black';
+        unitInput.style.color = 'black';
+        gradeInput.style.color = 'black';
         courseInput.id= `course${i}`;
         gradeInput.id = `grade${i}`;
         unitInput.id = `unit${i}`;
+        courseInput.name= `course${i}`;
+        gradeInput.name = `grade${i}`; 
+        unitInput.name = `unit${i}`;
 
+//for generating the select options dynamically
             for(let o=0; o<arrayoption.length; o++){
                 let option = document.createElement('option');
                 option.value = arrayoption[o];
                 option.text = arrayoption[o];
                 gradeInput.appendChild(option);
             }
+            //ends 
+
             courseInput.setAttribute ('required' , 'yes');
             courseInput.setAttribute('placeholder' , 'Enter CourseCode');
             courseInput.setAttribute('type' , 'text');
-        unitInput.setAttribute ('required' , 'yes');
+        unitInput.setAttribute ('required' , true);
         unitInput.setAttribute('placeholder' , 'Enter CourseUnit');
         unitInput.setAttribute('type' , 'number');
         div.appendChild(courseInput);
@@ -67,27 +73,31 @@
         }
         button.style.display="none";
         loopinput.style.display="none";
+        semester.style.display="none";
+        year.style.display="none";
         title.innerHTML = "Enter Your Course Details";
+
     //creating the calculate button
         let calculate =  document.createElement('button');
-        calculate.className ="btn btn-success";
+        calculate.className ="form-control mb-2 btn btn-primary";
         calculate.id="calculate";
-        calculate.appendChild(document.createTextNode('Calculate'));
+        calculate.style.color = 'white';
+        calculate.appendChild(document.createTextNode('CALCULATE'));
         form.appendChild(calculate);
            
-    let calculatebtn = document.getElementById('calculate');
+let calculatebtn = document.getElementById('calculate');
     //console.log(calculatebtn);
     
-        calculatebtn.addEventListener('click',gpCal);
+calculatebtn.addEventListener('click',gpCal);
        
     
             
        
-   
-    function gpCal(e){
+   // performs the gp calculations
+function gpCal(e){
             e.preventDefault();
-calculatebtn.style.display = 'none';
-title.innerHTML = "Your Calculation Details";
+        calculatebtn.style.display = 'none';
+        title.innerHTML = "Your Calculation Details";
             let grade_array = [];
             let unit_array = [];
             let course_array = [];
@@ -108,16 +118,37 @@ title.innerHTML = "Your Calculation Details";
              document.getElementById(`course${i}`).style.display = 'none';
                 
              
-
-             let li = document.createElement('li');
-             li.className = 'list-group-item';
+// Creating table to disply inputed values
+             let table = document.createElement('table');
+             table.className = 'table';
             
-             let div =  document.createElement('div');
-             div.className = "form-group";
+             let tr = document.createElement('tr');
+             tr.className = "thead-dark";
+             let trd = document.createElement('tr');
+             let th1 = document.createElement('th');
+             let th2 = document.createElement('th');
+             let th3 = document.createElement('th');
+             let td1 = document.createElement('td');
+             let td2 = document.createElement('td');
+             let td3 = document.createElement('td');
              
-             form.appendChild( div.appendChild(li));
-                    // let dataDisplay = document.getElementById('data');
-                li.innerHTML=`CourseCode: ${course_array[i]} || Grade: ${grade_array[i]} || Unit: ${unit_array[i]}`;
+             form.appendChild( table);
+             table.appendChild(tr);
+             table.appendChild(trd);
+             tr.appendChild(th1);
+             th1.innerHTML=`CourseCode`;
+             tr.appendChild(th2);
+             th2.innerHTML=`Unit`;
+             tr.appendChild(th3);
+             th3.innerHTML=`Grade`;
+             trd.appendChild(td1);
+             td1.innerHTML = course_array[i] ;
+             trd.appendChild(td2);
+             td2.innerHTML =unit_array[i];
+             trd.appendChild(td3);
+             td3.innerHTML = grade_array[i];
+
+                
              total_courseunit= total_courseunit + unit_array[i];
              
              switch(grade_array[i]) {
@@ -174,7 +205,7 @@ title.innerHTML = "Your Calculation Details";
     
      if(mgp >= 4.5){
         resultDisplay.style.color = '#ffffff' ;
-        resultDisplay.style.backgroundColor = '#00ff00' ;
+        resultDisplay.style.backgroundColor = 'rgb(6, 192, 167)' ;
         }else if(mgp >= 3.5 && mgp < 4.5){
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#001200' ;
@@ -210,9 +241,47 @@ title.innerHTML = "Your Calculation Details";
             //     divReset.className = "form-group";
             mainCard.appendChild(divReset);
             divReset.appendChild(savebtn);
-            savebtn.style.display = 'initial'; 
+            savebtn.style.display = 'initial';
+            savebtn.type='submit';
+            
+            //for saving to the database using ajax
             savebtn.addEventListener('click',()=>{
                 alert('Sorry we are still working on it');
+                let action = form.getAttribute('action');
+               // console.log(action);
+
+
+                function gatherFormData(){
+                    let inputs = document.getElementsByTagName('input');
+                    let select = document.getElementsByTagName('select');
+                    let array = [];
+                    for (let i = 0; i < inputs.length; i++) {
+                        let inputNameValue = inputs[i].name + '=' + inputs[i].value;
+                        array.push(inputNameValue);
+                    }
+                    for (let i = 0; i < select.length; i++) {
+                        let selectNameValue = select[i].name + '=' + select[i].value;
+                        array.push(selectNameValue); 
+                    }
+                    return array.join('&');
+                }
+
+               let form_data = gatherFormData(form);
+               console.log(form_data);
+               let xhr = new XMLHttpRequest();
+               xhr.open('POST', action, true);
+               xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+               xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+               xhr.onreadystatechange = function(){
+                   if(xhr.readyState == 4 && xhr.status == 200){
+                       let result = xhr.responseText;
+                       console.log('Result: ' + result);
+                      // postResult(result);
+                     
+                   }
+               }
+            xhr.send(form_data);
+
                 });  
             
 
@@ -221,7 +290,7 @@ title.innerHTML = "Your Calculation Details";
            
     }                          
     });
-    })();
+})();
     
     
     
