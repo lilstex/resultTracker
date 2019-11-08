@@ -4,6 +4,9 @@
     'use strict';
     let form = document.getElementById('form');
     let mainCard = document.getElementById('main');
+    let resetbtn = document.getElementById('reset');
+    let divReset =  document.getElementById('div');
+    let savebtn = document.getElementById('save');
 document.addEventListener('DOMContentLoaded', ()=>{
 
     
@@ -95,7 +98,7 @@ calculatebtn.addEventListener('click',gpCal);
        
    // performs the gp calculations
 function gpCal(e){
-            e.preventDefault();
+           e.preventDefault();
         calculatebtn.style.display = 'none';
         title.innerHTML = "Your Calculation Details";
             let grade_array = [];
@@ -206,83 +209,47 @@ function gpCal(e){
      if(mgp >= 4.5){
         resultDisplay.style.color = '#ffffff' ;
         resultDisplay.style.backgroundColor = 'rgb(6, 192, 167)' ;
+        savebtn.style.display = 'initial';
         }else if(mgp >= 3.5 && mgp < 4.5){
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#001200' ;
+            savebtn.style.display = 'initial';
         }
         else if(mgp >= 3 && mgp < 3.5){
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#f19000';
+            savebtn.style.display = 'initial';
         }else if(mgp >= 2 && mgp < 3){
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#e15000' ;
+            savebtn.style.display = 'initial';
         }else if(mgp >= 0 && mgp < 2){
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#ff0000';
+            savebtn.style.display = 'initial';
         }else{
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#ff0000';
             resultDisplay.innerHTML = `Please enter course unit`;
+            savebtn.style.display = 'none';
         }
     
         mainCard.appendChild(resultDisplay);
         resultDisplay.style.display = 'initial';
-        let resetbtn = document.getElementById('reset');
-        let divReset =  document.getElementById('div');
+        
             divReset.className = "form-group";
         mainCard.appendChild(divReset);
         divReset.appendChild(resetbtn);
         resetbtn.style.display = 'initial';
-        resetbtn.addEventListener('click',()=>{
+        resetbtn.addEventListener('click',(e)=>{
+            e.preventDefault();
             location.reload();
             }); 
-            let savebtn = document.getElementById('save');
-            // let divReset =  document.getElementById('div');
-            //     divReset.className = "form-group";
-            mainCard.appendChild(divReset);
+          
+          
+            form.appendChild(divReset);
             divReset.appendChild(savebtn);
-            savebtn.style.display = 'initial';
-            savebtn.type='submit';
-            
-            //for saving to the database using ajax
-            savebtn.addEventListener('click',()=>{
-                alert('Sorry we are still working on it');
-                let action = form.getAttribute('action');
-               // console.log(action);
-
-
-                function gatherFormData(){
-                    let inputs = document.getElementsByTagName('input');
-                    let select = document.getElementsByTagName('select');
-                    let array = [];
-                    for (let i = 0; i < inputs.length; i++) {
-                        let inputNameValue = inputs[i].name + '=' + inputs[i].value;
-                        array.push(inputNameValue);
-                    }
-                    for (let i = 0; i < select.length; i++) {
-                        let selectNameValue = select[i].name + '=' + select[i].value;
-                        array.push(selectNameValue); 
-                    }
-                    return array.join('&');
-                }
-
-               let form_data = gatherFormData(form);
-               console.log(form_data);
-               let xhr = new XMLHttpRequest();
-               xhr.open('POST', action, true);
-               xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-               xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-               xhr.onreadystatechange = function(){
-                   if(xhr.readyState == 4 && xhr.status == 200){
-                       let result = xhr.responseText;
-                       console.log('Result: ' + result);
-                      // postResult(result);
-                     
-                   }
-               }
-            xhr.send(form_data);
-
-                });  
+           
             
 
     }
