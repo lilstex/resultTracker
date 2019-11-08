@@ -1,5 +1,5 @@
 # Result-Tracker
-This is a progressive web app which enables students to calculate and keep track of there results  for future purposes or reference.
+This is a progressive web app which enables students to calculate and keep track of thire results  for future reference.
 
 
 *Welcome, and thank you for contributing to this project. Please take your time to study this document carefully before making any changes to the codebase, to ensure you're on the same page with the rest of the team and we can all collaborate seamlessly.* 
@@ -9,11 +9,12 @@ To set up this project, first fork this repositiory to your own account
 ```bash
 Locate fork button and click on it.
 ```
-Change your working directory into the project directory
+Then go to your desktop and create a folder, name it resultTracker.
+Open your terminal and change your working directory to resultTracker you created.
 ```bash
 $ cd result-tracker
 ```
-
+Then run all the commands in the terminal.
 Set up your origin and upstream remotes by running the following commands
 ```bash
 git remote add origin https://github.com/{YOUR-GITHUB-USERNAME}/resultTracker.git
