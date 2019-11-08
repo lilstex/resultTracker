@@ -199,11 +199,17 @@ function gpCal(e){
             else{
                 display.innerHTML = `Invalid Calculation`;
              }
-             
-       
-        let resultDisplay = document.getElementById('resultDisplay');;
 
-       
+             //getting gp result value to backend
+             let gpInput = document.createElement('input');
+             gpInput.name = 'gp';
+             gpInput.value = mgp;
+             gpInput.style.display = "none";
+             form.appendChild(gpInput);
+
+             
+       //for displaying the GP result
+        let resultDisplay = document.getElementById('resultDisplay');;
         resultDisplay.innerHTML = `Your GP Calculation IS ${mgp}`;
     
      if(mgp >= 4.5){
