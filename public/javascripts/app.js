@@ -4,19 +4,19 @@
     'use strict';
     let form = document.getElementById('form');
     let mainCard = document.getElementById('main');
-    document.addEventListener('DOMContentLoaded', ()=>{
+    let resetbtn = document.getElementById('reset');
+    let divReset =  document.getElementById('div');
+    let savebtn = document.getElementById('save');
+document.addEventListener('DOMContentLoaded', ()=>{
 
-    // //changing the background color with the mousemoves
-    //     let mousemove = document.querySelector('#main');
-    //     mousemove.addEventListener('mousemove',movemouse);
-    // function movemouse(e){
-    //     document.body.style.backgroundColor = `rgb(${e.offsetX}, ${e.offsetY}, 470)`;
-    // }
+    
 
 
-    //validation the loop number input
-    let button = document.getElementById('button');
+    //validation of the loop number input
+let button = document.getElementById('button');
         let loopinput = document.getElementById('loopNumber');
+        let semester = document.getElementById('semester');
+        let year = document.getElementById('year');
         button.disabled = true;
         loopinput.addEventListener('keyup',()=>{
             if(loopinput.value === ''){
@@ -28,9 +28,9 @@
             }
         
         });
-    button.addEventListener('click',buttonClick);
-    //function for creating the input and calculate button
-    function buttonClick(e){
+button.addEventListener('click',buttonClick);
+    //function that triggers all functionalities
+function buttonClick(e){
         e.preventDefault(); 
     let loopNumber = parseInt(document.getElementById('loopNumber').value, 10);
     let title = document.querySelector('.title');
@@ -45,20 +45,29 @@
         courseInput.className = 'btn btn-outline-primary mt-sm-2';
         unitInput.className = 'btn btn-outline-primary mt-sm-2';
         gradeInput.className = `btn btn-outline-primary  `;
+        courseInput.style.color = 'black';
+        unitInput.style.color = 'black';
+        gradeInput.style.color = 'black';
         courseInput.id= `course${i}`;
         gradeInput.id = `grade${i}`;
         unitInput.id = `unit${i}`;
+        courseInput.name= `course${i}`;
+        gradeInput.name = `grade${i}`; 
+        unitInput.name = `unit${i}`;
 
+//for generating the select options dynamically
             for(let o=0; o<arrayoption.length; o++){
                 let option = document.createElement('option');
                 option.value = arrayoption[o];
                 option.text = arrayoption[o];
                 gradeInput.appendChild(option);
             }
+            //ends 
+
             courseInput.setAttribute ('required' , 'yes');
             courseInput.setAttribute('placeholder' , 'Enter CourseCode');
             courseInput.setAttribute('type' , 'text');
-        unitInput.setAttribute ('required' , 'yes');
+        unitInput.setAttribute ('required' , true);
         unitInput.setAttribute('placeholder' , 'Enter CourseUnit');
         unitInput.setAttribute('type' , 'number');
         div.appendChild(courseInput);
@@ -67,27 +76,31 @@
         }
         button.style.display="none";
         loopinput.style.display="none";
+        semester.style.display="none";
+        year.style.display="none";
         title.innerHTML = "Enter Your Course Details";
+
     //creating the calculate button
         let calculate =  document.createElement('button');
-        calculate.className ="btn btn-success";
+        calculate.className ="form-control mb-2 btn btn-primary";
         calculate.id="calculate";
-        calculate.appendChild(document.createTextNode('Calculate'));
+        calculate.style.color = 'white';
+        calculate.appendChild(document.createTextNode('CALCULATE'));
         form.appendChild(calculate);
            
-    let calculatebtn = document.getElementById('calculate');
+let calculatebtn = document.getElementById('calculate');
     //console.log(calculatebtn);
     
-        calculatebtn.addEventListener('click',gpCal);
+calculatebtn.addEventListener('click',gpCal);
        
     
             
        
-   
-    function gpCal(e){
-            e.preventDefault();
-calculatebtn.style.display = 'none';
-title.innerHTML = "Your Calculation Details";
+   // performs the gp calculations
+function gpCal(e){
+           e.preventDefault();
+        calculatebtn.style.display = 'none';
+        title.innerHTML = "Your Calculation Details";
             let grade_array = [];
             let unit_array = [];
             let course_array = [];
@@ -108,16 +121,37 @@ title.innerHTML = "Your Calculation Details";
              document.getElementById(`course${i}`).style.display = 'none';
                 
              
-
-             let li = document.createElement('li');
-             li.className = 'list-group-item';
+// Creating table to disply inputed values
+             let table = document.createElement('table');
+             table.className = 'table';
             
-             let div =  document.createElement('div');
-             div.className = "form-group";
+             let tr = document.createElement('tr');
+             tr.className = "thead-dark";
+             let trd = document.createElement('tr');
+             let th1 = document.createElement('th');
+             let th2 = document.createElement('th');
+             let th3 = document.createElement('th');
+             let td1 = document.createElement('td');
+             let td2 = document.createElement('td');
+             let td3 = document.createElement('td');
              
-             form.appendChild( div.appendChild(li));
-                    // let dataDisplay = document.getElementById('data');
-                li.innerHTML=`CourseCode: ${course_array[i]} || Grade: ${grade_array[i]} || Unit: ${unit_array[i]}`;
+             form.appendChild( table);
+             table.appendChild(tr);
+             table.appendChild(trd);
+             tr.appendChild(th1);
+             th1.innerHTML=`CourseCode`;
+             tr.appendChild(th2);
+             th2.innerHTML=`Unit`;
+             tr.appendChild(th3);
+             th3.innerHTML=`Grade`;
+             trd.appendChild(td1);
+             td1.innerHTML = course_array[i] ;
+             trd.appendChild(td2);
+             td2.innerHTML =unit_array[i];
+             trd.appendChild(td3);
+             td3.innerHTML = grade_array[i];
+
+                
              total_courseunit= total_courseunit + unit_array[i];
              
              switch(grade_array[i]) {
@@ -174,46 +208,48 @@ title.innerHTML = "Your Calculation Details";
     
      if(mgp >= 4.5){
         resultDisplay.style.color = '#ffffff' ;
-        resultDisplay.style.backgroundColor = '#00ff00' ;
+        resultDisplay.style.backgroundColor = 'rgb(6, 192, 167)' ;
+        savebtn.style.display = 'initial';
         }else if(mgp >= 3.5 && mgp < 4.5){
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#001200' ;
+            savebtn.style.display = 'initial';
         }
         else if(mgp >= 3 && mgp < 3.5){
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#f19000';
+            savebtn.style.display = 'initial';
         }else if(mgp >= 2 && mgp < 3){
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#e15000' ;
+            savebtn.style.display = 'initial';
         }else if(mgp >= 0 && mgp < 2){
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#ff0000';
+            savebtn.style.display = 'initial';
         }else{
             resultDisplay.style.color = '#ffffff' ;
             resultDisplay.style.backgroundColor = '#ff0000';
             resultDisplay.innerHTML = `Please enter course unit`;
+            savebtn.style.display = 'none';
         }
     
         mainCard.appendChild(resultDisplay);
         resultDisplay.style.display = 'initial';
-        let resetbtn = document.getElementById('reset');
-        let divReset =  document.getElementById('div');
+        
             divReset.className = "form-group";
         mainCard.appendChild(divReset);
         divReset.appendChild(resetbtn);
         resetbtn.style.display = 'initial';
-        resetbtn.addEventListener('click',()=>{
+        resetbtn.addEventListener('click',(e)=>{
+            e.preventDefault();
             location.reload();
             }); 
-            let savebtn = document.getElementById('save');
-            // let divReset =  document.getElementById('div');
-            //     divReset.className = "form-group";
-            mainCard.appendChild(divReset);
+          
+          
+            form.appendChild(divReset);
             divReset.appendChild(savebtn);
-            savebtn.style.display = 'initial'; 
-            savebtn.addEventListener('click',()=>{
-                alert('Sorry we are still working on it');
-                });  
+           
             
 
     }
@@ -221,7 +257,7 @@ title.innerHTML = "Your Calculation Details";
            
     }                          
     });
-    })();
+})();
     
     
     
