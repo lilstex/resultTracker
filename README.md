@@ -40,6 +40,10 @@ install nodemon by running
 ```
 npm install nodemon -g
  ```
+ Then start your app using nodemon 
+ ```
+ nodemon
+ ```
 // Then go to your browser and and type http://localhost:8000/ 
 ```
 After contributing based on a specified issue, run the following commands after commiting changes
