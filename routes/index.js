@@ -16,13 +16,32 @@ router.get('/app', function(req, res, next) {
 let data = [];
 router.post('/app',urlencodedParser,function(req,res,next){
   
-  let result = Object.entries(req.body);
+  let result = Object.values(req.body);
   console.log(result)
-  res.render('show',{record:result});
+  res.render('dashboard',{record:result});
+});
+
+router.get('/dashboard', function(req, res, next) {
+  res.render('dashboard');
+});
+
+router.get('/signin', function(req, res, next) {
+  res.render('signin');
+});
+
+router.get('/signup', function(req, res, next) {
+  res.render('signup');
+});
+
+router.get('/contact', function(req, res, next) {
+  res.render('contact');
 });
 
 router.get('/show', function(req, res, next) {
   res.render('show');
 });
 
+router.get('/about', function(req, res, next) {
+  res.render('about');
+});
 module.exports = router;
