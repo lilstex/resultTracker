@@ -1,7 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({extended: false});
+let express = require('express');
+let router = express.Router();
+let bodyParser = require('body-parser');
+let csrf = require('csurf');
+
+let csrfProtection = csrf();
+router.use(csrfProtection);
+let urlencodedParser = bodyParser.urlencoded({extended: false});
 
 //let data = [{coursecode:}]
 /* GET home page. */
@@ -22,15 +26,15 @@ router.post('/app',urlencodedParser,function(req,res,next){
 });
 
 router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard');
+  res.render('user/dashboard');
 });
 
 router.get('/signin', function(req, res, next) {
-  res.render('signin');
+  res.render('user/signin');
 });
 
 router.get('/signup', function(req, res, next) {
-  res.render('signup');
+  res.render('user/signup', {csrfToken: req.csrfToken()});
 });
 
 router.get('/contact', function(req, res, next) {
@@ -38,7 +42,7 @@ router.get('/contact', function(req, res, next) {
 });
 
 router.get('/show', function(req, res, next) {
-  res.render('show');
+  res.render('user/show');
 });
 
 router.get('/about', function(req, res, next) {
