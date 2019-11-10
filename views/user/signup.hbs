@@ -1,4 +1,4 @@
-<hr><hr><hr><hr><hr>
+
 
 <link rel="stylesheet" href="stylesheets/style.css">
     <br><br><br><br>
@@ -22,18 +22,38 @@
             </div> 
 {{/if}}
        </div>
-         <form  action="/user/signup" method="post" >
+         <form  action="/signup" method="POST" >
     		<div class="form-group">
-    			<label for="title">Email:</label>
-                <input type="" name="email" 
+    			<label for="title">Name:</label>
+                <input type="text" name="name" 
                 class="form-control"  placeholder="Email">
+    		</div>
+            <div class="form-group">
+    			<label for="title">Email:</label>
+                <input type="email" name="email" 
+                class="form-control"  placeholder="Enter Your Email">
+    		</div>
+            <div class="form-group">
+    			<label for="title">MatNumber:</label>
+                <input type="text" name="matnumber" 
+                class="form-control"  placeholder="Enter Your Matnumber">
+    		</div>
+            <div class="form-group">
+    			<label for="title">School:</label>
+                <input type="text" name="school" 
+                class="form-control"  placeholder="Enter Your School">
+    		</div>
+            <div class="form-group">
+    			<label for="title">Department:</label>
+                <input type="text" name="department" 
+                class="form-control"  placeholder="Enter Your Department">
     		</div>
             <div class="form-group">
     			<label for="title">Password:</label>
                 <input type="password" name="password" 
                 class="form-control"  placeholder="Password">
     		</div>
-            <input type="" name ="_csrf" value="{{ csrfToken }}">
+            <input type="hidden" name ="_csrf" value="{{ csrfToken }}">
             <div class="form-group">
     			<button type="submit" name="submit" class="btn btn-primary">Signup</button>
     		</div>
