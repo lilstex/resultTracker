@@ -9,11 +9,12 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-//const validator= require('express-validator'); 
+const validator= require('express-validator'); 
+//console.log(validator);
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-
+const usersRouter = require('./routes/user');
+ 
 const app = express();
 
 mongoose.Promise = Promise; 
@@ -40,7 +41,7 @@ app.set('view engine', '.hbs');
 app.use(logger('dev'));
 app.use(bodyParser .json());
 app.use(bodyParser .urlencoded({ extended: false }));
-//app.use(validator());
+app.use(validator());
 app.use(cookieParser());
 app.use(session(
   {secret: 'mysupersecret', 
@@ -56,8 +57,9 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', usersRouter);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

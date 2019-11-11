@@ -6,3 +6,11 @@ h1{
     background-color: rgb(6, 192, 167);
     
 }
+#mybtn{
+    margin-top: 10px;
+    border: 2px solid white;
+    border-radius: 24px;
+    padding: 6px;
+    color:white;
+    background-color: rgb(192, 111, 6);
+}
