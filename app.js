@@ -10,7 +10,7 @@ const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const validator= require('express-validator'); 
-//console.log(validator);
+const MongoStore = require('connect-mongo')(session);
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
@@ -46,7 +46,9 @@ app.use(cookieParser());
 app.use(session(
   {secret: 'mysupersecret', 
   resave:false, 
-  saveUninitialized: false
+  saveUninitialized: false,
+  store:new MongoStore({ mongooseConnection: mongoose.connection}),
+  cookie: { maxAge:180 * 60 * 1000} 
 }
   
   ));
@@ -54,8 +56,13 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req,res,next){
+  res.locals.isLogin = req.isAuthenticated();
+  res.locals.session = req.session;
+  next();
+});
 
 app.use('/', usersRouter);
 app.use('/', indexRouter);
