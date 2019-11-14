@@ -19,15 +19,7 @@
                                      <form action="/app" method="POST" id='form' class="contact-form">
                                     
                                     <input  style="color:black" type="number" id="loopNumber" class="form-control mb-2"
-                                        placeholder="Enter number of courses" name="noOfCourses"><br>
-                                       
-                                    <select style="color:black" class="form-control mb-2" name="semester" id="semester">
-                                        <option value="first" >FirstSemester</option>
-                                        <option value="second">SecondSemester</option>
-                                    </select><br>
-                                        
-                                    <select style="color:black" class="form-control mb-2" id="year" name="year"> 
-                                    </select>
+                                        placeholder="Enter number of courses" name="numberOfCourses"><br>
                                     <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                                     <button style="color:white" id="button" 
                                     class="form-control mb-2 btn btn-primary">ENTER</button>
@@ -48,22 +40,6 @@
             
         </div> 
 
-        <script>
-         let select = document.getElementById('year');
-                let currYear = new Date().getFullYear();
-                let futureYear = currYear+3;
-                let pastYear = currYear-3;
-
-                for(let year = pastYear; year <= futureYear; year++){
-                let option = document.createElement('option');
-                option.setAttribute('value', year);
-                if(year === currYear){
-                    option.setAttribute('selected', true);
-                }
-                option.innerHTML = `${year} - ${year + 1}`;
-                select.appendChild(option);
-                }
-        </script>
-    
+       
     <script type="text/javascript" src="javascripts/app.js"></script>
     

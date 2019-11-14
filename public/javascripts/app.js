@@ -15,8 +15,6 @@
         //validation of the loop number input
         let button = document.getElementById('button');
         let loopinput = document.getElementById('loopNumber');
-        let semester = document.getElementById('semester');
-        let year = document.getElementById('year');
         button.disabled = true;
         loopinput.addEventListener('keyup', () => {
             if (loopinput.value === '') {
@@ -35,7 +33,7 @@
             let loopNumber = parseInt(document.getElementById('loopNumber').value, 10);
             let title = document.querySelector('.title');
             var arrayoption = ['A', 'B', 'C', 'D', 'F'];
-            for (let i = 0; i < loopNumber; i++) {
+            for (let i = 1; i <= loopNumber; i++) {
                 let div = document.createElement('div');
                 div.className = "form-group";
                 form.appendChild(div);
@@ -76,8 +74,6 @@
             }
             button.style.display = "none";
             loopinput.style.display = "none";
-            semester.style.display = "none";
-            year.style.display = "none";
             title.innerHTML = "Enter Your Course Details";
 
             //creating the calculate button
@@ -111,7 +107,7 @@
                 let total_courseunit = 0;
                 let mgp = 0;
 
-                for (let i = 0; i < loopNumber; i++) {
+                for (let i = 1; i <= loopNumber; i++) {
 
                     course_array[i] = document.getElementById(`course${i}`).value;
                     grade_array[i] = document.getElementById(`grade${i}`).value;

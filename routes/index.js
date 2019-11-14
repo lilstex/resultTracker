@@ -11,6 +11,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/app', function (req, res, next) {
   req.session.resultData = req.body;
+  req.session.gp = req.body.gp;
   res.redirect('save');
 });
 
@@ -18,9 +19,18 @@ router.post('/save', isLoggedIn, function (req, res, next) {
 
   let result = new Result({
     user: req.user,
+    semester: req.body.semester,
+    level: req.body.level,
+    year: req.body.year,
+    gp: req.session.gp,
     resultsData: req.session.resultData
   });
   result.save(function (err, result) {
+    if(req.session.resultData == null){
+      req.flash('success', 'Sorry no calculation was made');
+    }
+    req.session.resultData = null;
+    req.session.gp = null;
     req.flash('success', 'Saved Successfully');
     res.redirect('/dashboard');
   });

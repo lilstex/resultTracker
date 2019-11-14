@@ -28,16 +28,49 @@
                 <h3>
                     <center>Your Result IS In Safe Hands</center>
                 </h3>
-                     
+
                 <form action="/save" method="POST" class="">
-                  <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                <select style="color:black" class="form-control mb-2" name="level" id="semester">
+                        <option value="100level">100 LEVEL</option>
+                        <option value="200level">200 LEVEL</option>
+                        <option value="300level">300 LEVEL</option>
+                        <option value="400level">400 LEVEL</option>
+                        <option value="500level">500 LEVEL</option>
+                        <option value="600level">600 LEVEL</option>
+                        <option value="700level">700 LEVEL</option>
+                        <option value="800level">800 LEVEL</option>
+                    </select><br>
+                    <select style="color:black" class="form-control mb-2" name="semester" id="semester">
+                        <option value="FirstSemester">FirstSemester</option>
+                        <option value="SecondSemester">SecondSemester</option>
+                    </select><br>
+                    <select style="color:black" class="form-control mb-2" id="year" name="year">
+                    </select>
+                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                     <button type="submit" class="btn btn-primary btn block col-md-12">ClICK TO SAVE</button>
                 </form>
-                
-           
+
+
             </div>
-           
+
         </div>
         <div class="col-md-2 col-md-offset-2"></div>
     </div>
 </div>
+
+<script>
+    let select = document.getElementById('year');
+    let currYear = new Date().getFullYear();
+    let futureYear = currYear + 3;
+    let pastYear = currYear - 3;
+
+    for (let year = pastYear; year <= futureYear; year++) {
+        let option = document.createElement('option');
+        option.setAttribute('value', year);
+        if (year === currYear) {
+            option.setAttribute('selected', true);
+        }
+        option.innerHTML = `${year} - ${year + 1}`;
+        select.appendChild(option);
+    }
+</script>
