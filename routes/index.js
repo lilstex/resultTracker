@@ -4,7 +4,7 @@ let Result = require('../models/result');
 
 
 router.get('/', function (req, res, next) {
-  
+
   res.render('index', { title: 'ResultTracker' });
 });
 
@@ -26,12 +26,14 @@ router.post('/save', isLoggedIn, function (req, res, next) {
     resultsData: req.session.resultData
   });
   result.save(function (err, result) {
-    if(req.session.resultData == null){
-      req.flash('success', 'Sorry no calculation was made');
+    if (req.session.resultData == null) {
+      req.flash('error', 'SORRY NO CALCULATION WAS MADE');
+    } else {
+      req.session.resultData = null;
+      req.session.gp = null;
+      req.flash('success', 'Saved Successfully');
     }
-    req.session.resultData = null;
-    req.session.gp = null;
-    req.flash('success', 'Saved Successfully');
+
     res.redirect('/dashboard');
   });
 

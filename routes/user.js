@@ -16,7 +16,8 @@ router.get('/save', isLoggedIn, function (req, res, next) {
 
 router.get('/dashboard', isLoggedIn, function (req, res, next) {
   let successMsg = req.flash('success')[0];
-  res.render('user/dashboard',{successMsg: successMsg, noMessages: !successMsg});
+  let messages = req.flash('error');
+  res.render('user/dashboard',{ messages: messages, hasErrors: messages.length > 0,successMsg: successMsg, noMessages: !successMsg});
 });
 
 

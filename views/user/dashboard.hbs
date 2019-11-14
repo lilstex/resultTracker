@@ -11,3 +11,15 @@
         {{successMsg}}
     </div>
 </div>
+                <div>
+                    {{#if hasErrors}}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {{# each messages }}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+
+                    </div>
+                    {{/if}}
+                </div>
