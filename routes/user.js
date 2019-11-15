@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 let csrf = require('csurf');
 const passport = require('passport');
+let Result = require('../models/result');
 
 let csrfProtection = csrf();
 router.use(csrfProtection);
@@ -17,7 +18,23 @@ router.get('/save', isLoggedIn, function (req, res, next) {
 router.get('/dashboard', isLoggedIn, function (req, res, next) {
   let successMsg = req.flash('success')[0];
   let messages = req.flash('error');
-  res.render('user/dashboard',{ messages: messages, hasErrors: messages.length > 0,successMsg: successMsg, noMessages: !successMsg});
+  Result.find({ user: req.user }, function (err, results) {
+    if (err) {
+      res.write('Error!');
+    }
+    let resultData;
+    let resultKey;
+    results.forEach(function (result) {
+      resultData = Object.values(result.resultsData);
+      resultKey = Object.keys(result.resultsData);
+    //console.log(resultKey);
+    });
+   
+    res.render('user/dashboard',{results: results, resultData:resultData, resultKey: resultKey,
+      messages: messages, hasErrors: messages.length > 0, successMsg: successMsg, noMessages: !successMsg });
+  });
+ 
+  
 });
 
 
@@ -43,7 +60,7 @@ router.post('/signin', isNotLoggedIn, passport.authenticate('local.signin', {
     req.session.oldUrl = null;
     res.redirect(oldLink);
   } else {
-    res.redirect('/user/dashboard');
+    res.redirect('/dashboard');
   }
 
 });
@@ -65,7 +82,7 @@ router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
     res.redirect(oldLink);
 
   } else {
-    res.redirect('/user/dashboard');
+    res.redirect('/dashboard');
   }
 
 });
