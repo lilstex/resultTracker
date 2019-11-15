@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 
 Main Color: #02b6c1;
 Dark Gray: #3f3f3f;
@@ -124,3 +125,13 @@ hr {
   font-weight: 400;
   font-size: 35px;
 }
+=======
+h1{
+    margin: 0px;
+    padding: 0px;
+    width: auto;
+    text-align: center;
+    background-color: rgb(6, 192, 167);
+    
+}
+>>>>>>> d650d0650f487f6316b2e063e3301e6d6b4f2aa4
