@@ -33,7 +33,11 @@ router.get('/dashboard', isLoggedIn, function (req, res, next) {
   });
 });
 
+router.get('/view/:id', isLoggedIn, function(req,res,next){
 
+  res.render('user/view');
+
+});
 
 // router.get('/dashboard', isLoggedIn, function (req, res, next) {
     //   let successMsg = req.flash('success')[0];

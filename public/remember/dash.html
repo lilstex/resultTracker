@@ -1,0 +1,154 @@
+<header id="main-header" class="bg-primary text-white p-4 mb-3">
+    <div class="container">
+        <h1 id="header-title">Result Tracker</h1>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+            <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
+                {{successMsg}}
+            </div>
+            <div>
+                {{#if hasErrors}}
+                <div class="alert alert-danger">
+                    <ul>
+                        {{# each messages }}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="col-md-5">
+                    <h4 class="year-text">Second Year</h4>
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="d-flex flex-row">
+                                <div class="p-3 item-hl semester-info">
+                                    <h4>1ST Semester</h4>
+                                    <br>
+                                    <h2 class="grade-point">3.5</h2>
+                                </div>
+                                <div class="p-3 item-hl semester-info">
+                                    <h4>2ND Semester</h4>
+                                    <br>
+                                    <h2 class="grade-point">3.5</h2>
+                                </div>
+                            </div>
+                            <div class="average-gp">
+                                <h3>
+                                    <Span>Average</Span>
+                                    <Span>3.5</Span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="col-md-5 offset-md-1">
+                    <h4 class="year-text">Third Year</h4>
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="d-flex flex-row">
+                                <div class="p-3 item-hl semester-info">
+                                    <h4>1ST Semester</h4>
+                                    <br>
+                                    <h2 class="grade-point">3.5</h2>
+                                </div>
+                                <div class="p-3 item-hl semester-info">
+                                    <h4>2ND Semester</h4>
+                                    <br>
+                                    <h2 class="grade-point">3.5</h2>
+                                </div>
+                            </div>
+                            <div class="average-gp">
+                                <h3>
+                                    <Span>Average</Span>
+                                    <Span>3.5</Span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <h4 class="year-text">Fourth Year</h4>
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="d-flex flex-row">
+                                <div class="p-3 item-hl semester-info">
+                                    <h4>1ST Semester</h4>
+                                    <br>
+                                    <h2 class="grade-point">3.5</h2>
+                                </div>
+                                <div class="p-3 item-hl semester-info">
+                                    <h4>2ND Semester</h4>
+                                    <br>
+                                    <h2 class="grade-point">3.5</h2>
+                                </div>
+                            </div>
+                            <div class="average-gp">
+                                <h3>
+                                    <Span>Average</Span>
+                                    <Span>3.5</Span>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+{{# each results}}
+<p class="btn btn-success">Semester:{{ this.semester }}</p>
+<p class="btn btn-success"><strong>Level:{{ this.level }}</strong></p>
+<p class="btn btn-success"><strong>Year: {{ this.year }}</strong> </p>
+</div>
+</div>
+</div>
+<div class="row">
+
+    <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+        <p class="btn btn-success">GP:<strong> <strike>N</strike> {{ this.gp }}</strong> </p>
+        <div class="row">
+
+        </div><br>
+
+        {{!-- <div style='overflow-x:scroll;overflow;hidden;'>
+
+
+            <table class="table">
+                <tr class="thead-dark">
+                    {{# each this.resultKey}}
+
+                    <th>{{ this }}</th>
+
+
+                    {{/each}}
+                </tr>
+                <tr>
+                    {{# each this.resultData}}
+                    <td>{{ this }}</td>
+
+                    {{/each}}
+                </tr>
+            </table>
+        </div> --}}
+
+        {{/each}}
+        <hr>
+=======
+
+<br><br><br><br><br><br><br><br><br>
