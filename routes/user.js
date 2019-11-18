@@ -22,20 +22,33 @@ router.get('/dashboard', isLoggedIn, function (req, res, next) {
     if (err) {
       res.write('Error!');
     }
-    let resultData;
-    let resultKey;
     results.forEach(function (result) {
-      resultData = Object.values(result.resultsData);
-      resultKey = Object.keys(result.resultsData);
-    //console.log(resultKey);
+     
     });
-   
-    res.render('user/dashboard',{results: results, resultData:resultData, resultKey: resultKey,
-      messages: messages, hasErrors: messages.length > 0, successMsg: successMsg, noMessages: !successMsg });
+    res.render('user/dashboard', {
+      results: results, 
+      messages: messages, hasErrors: messages.length > 0, 
+      successMsg: successMsg, noMessages: !successMsg
+    });
   });
- 
-  
 });
+
+
+
+// router.get('/dashboard', isLoggedIn, function (req, res, next) {
+    //   let successMsg = req.flash('success')[0];
+    //   let messages = req.flash('error');
+    //   Result.find({ user: req.user }, function (err, results) {
+    //     if (err) {
+    //       res.write('Error!');
+    //     }
+    //     let resultData;
+    //     let resultKey;
+    //     results.forEach(function (result) {
+    //       resultData = Object.values(result.resultsData);
+    //       resultKey = Object.keys(result.resultsData);
+    //       //console.log(resultKey);
+    //     });
 
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
