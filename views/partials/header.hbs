@@ -66,10 +66,13 @@
 					<li class="menu_item menu_mm"><a href="/">Home</a></li>
 					<li class="menu_item menu_mm"><a href="/about">FAQS</a></li>
 					<li class="menu_item menu_mm"><a href="/contact">Contact Us</a></li>
+					{{# if isLogin }}
 					<li class="menu_item menu_mm"><a href="/dashboard">Dashboard</a></li>
+					<li class="menu_item menu_mm"><a href="/logout" class="btn btn-danger">Logout</a></li>
+					{{ else }}
 					<li class="menu_item menu_mm"><a class="btn btn-warning" href="/signup">Signup</a></li>
 					<li class="menu_item menu_mm"><a href="/signin">Signin</a></li>
-					<li class="menu_item menu_mm"><a href="/logout" class="btn btn-danger">Logout</a></li>
+					{{/if }}
 				</ul>
 			</div>
 			<div class="menu_extra">
