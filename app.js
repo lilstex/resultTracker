@@ -15,6 +15,9 @@ const MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
  
+const ENV = require('dotenv');
+ENV.config();
+
 const app = express();
 
 mongoose.Promise = Promise; 
@@ -22,7 +25,7 @@ mongoose.set('useCreateIndex', true);
 const mongooseOptions = {  useNewUrlParser: true }
 
 
-mongoose.connect("mongodb://localhost:27017/resultTracker", mongooseOptions, function(err) {
+mongoose.connect(process.env.DATABASE_URL, mongooseOptions, function(err) {
     if (err) {
         console.error('System could not connect to mongo server.');
         console.log(err) ;    
