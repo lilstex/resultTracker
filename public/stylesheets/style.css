@@ -1,3 +1,131 @@
+<<<<<<< HEAD
+/* 
+Main Color: #02b6c1;
+Dark Gray: #3f3f3f;
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+}
+h1 {
+  margin: 0px;
+  padding: 0px;
+  width: auto;
+  text-align: center;
+  background-color: #02b6c1;
+}
+.col-sm-3 {
+  height: 100vh;
+  background-color: #02b6c1;
+  position: relative;
+  z-index: 100;
+}
+.user-main-info {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.user-info {
+  color: white;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+.user-name {
+  display: block;
+}
+.user-level {
+  display: block;
+}
+
+hr {
+  background-color: #fff;
+}
+.user-functions {
+  position: absolute;
+  top: 35%;
+  left: 10%;
+  width: 100%;
+  transform: translate(-10%);
+  text-align: center;
+}
+.btn {
+  color: #fff;
+}
+.btn-user-white {
+  background-color: #fff;
+  color: #02b6c1;
+}
+
+.nav-img {
+  border: 100%;
+}
+.nav-link {
+  color: #02b6c1;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.col-md-5 {
+  position: relative;
+}
+
+.card {
+  box-shadow: 0 5px 20px #3f3f3f49;
+}
+
+.year-text {
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 18px;
+  color: #3f3f3f;
+}
+.footer-links {
+  transform: translate(10%, 80%);
+}
+.footer-links a {
+  color: #02b6c1;
+  font-weight: 600;
+  font-size: 14px;
+}
+.footer-links a:nth-last-child(1) {
+  float: right;
+  transform: translateX(-300%);
+}
+.item-hl {
+  border: 1.2px solid #02b6c1;
+  width: 100%;
+  height: 100%;
+}
+.average-gp {
+  font-weight: 600;
+  font: size 16px;
+  margin: 10px;
+  padding: 5px;
+}
+.average-gp h3 span:nth-last-child(1) {
+  float: right;
+}
+.semester-info {
+  text-align: center;
+}
+.semester-info h2 {
+  text-align: center;
+}
+.grade-point {
+  color: #02b6c1;
+  font-weight: 400;
+  font-size: 35px;
+}
+=======
 h1{
     margin: 0px;
     padding: 0px;
@@ -6,3 +134,15 @@ h1{
     background-color: rgb(6, 192, 167);
     
 }
+<<<<<<< HEAD
+#mybtn{
+    margin-top: 10px;
+    border: 2px solid white;
+    border-radius: 24px;
+    padding: 6px;
+    color:white;
+    background-color: rgb(192, 111, 6);
+}
+=======
+>>>>>>> d650d0650f487f6316b2e063e3301e6d6b4f2aa4
+>>>>>>> 0f45927d6fe44679ca480e7a0a86fbb5e1ac4a11

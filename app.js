@@ -9,10 +9,14 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-//const validator= require('express-validator'); 
+const validator= require('express-validator'); 
+const MongoStore = require('connect-mongo')(session);
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/user');
+ 
+const ENV = require('dotenv');
+ENV.config();
 
 const app = express();
 
@@ -21,7 +25,7 @@ mongoose.set('useCreateIndex', true);
 const mongooseOptions = {  useNewUrlParser: true }
 
 
-mongoose.connect("mongodb://localhost:27017/resultTracker", mongooseOptions, function(err) {
+mongoose.connect(process.env.DATABASE_URL, mongooseOptions, function(err) {
     if (err) {
         console.error('System could not connect to mongo server.');
         console.log(err) ;    
@@ -40,12 +44,14 @@ app.set('view engine', '.hbs');
 app.use(logger('dev'));
 app.use(bodyParser .json());
 app.use(bodyParser .urlencoded({ extended: false }));
-//app.use(validator());
+app.use(validator());
 app.use(cookieParser());
 app.use(session(
   {secret: 'mysupersecret', 
   resave:false, 
-  saveUninitialized: false
+  saveUninitialized: false,
+  store:new MongoStore({ mongooseConnection: mongoose.connection}),
+  cookie: { maxAge:180 * 60 * 1000} 
 }
   
   ));
@@ -53,11 +59,17 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req,res,next){
+  res.locals.isLogin = req.isAuthenticated();
+  res.locals.session = req.session;
+  next();
+});
+
+app.use('/', usersRouter);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
