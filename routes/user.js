@@ -33,9 +33,26 @@ router.get('/dashboard', isLoggedIn, function (req, res, next) {
   });
 });
 
-router.get('/view/:id', isLoggedIn, function(req,res,next){
+router.get('/view/:_id', isLoggedIn, function(req,res,next){
+  Result.find({ _id: req.params._id},
+    function (err, result) {
+      if(err) {
+        return errHandler(err);
+      }
+      let resultData;
+      let resultKey;
+      result.forEach(function(singleResult) {
+        resultData = Object.values(singleResult.resultsData);
+        resultKey = Object.keys(singleResult.resultsData);
+      });
+     
+      // console.log(result);
+      // console.log(resultData);
+      // console.log(resultKey);
+      res.render('user/view',{result:result, resultData:resultData, resultKey:resultKey});
+  });
 
-  res.render('user/view');
+  
 
 });
 
