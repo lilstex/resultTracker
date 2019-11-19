@@ -223,7 +223,7 @@ section
 {
 	display: inline-block;
 	height: 51px;
-	background: #6c63ff;
+	background: orange;
 }
 .button::after
 {
@@ -249,7 +249,7 @@ section
 	line-height: 51px;
 	font-size: 14px;
 	font-weight: 900;
-	color: #FFFFFF;
+	color: #000000;
 	padding-left: 39px;
 	padding-right: 45px;
 	text-transform: uppercase;
