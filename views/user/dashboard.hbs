@@ -1,10 +1,100 @@
 <link rel="stylesheet" href="stylesheets/style.css">
-    <br><br><br><br>
-        <header id="main-header" class="bg-primary text-white p-4 mb-3">
-                <div class="container">
-                    <h1 id="header-title">Result Tracker</h1>
-                </div>
-            </header>
 
- <h3 class="bg bg-success">Saved Successfully</h3> 
- <p>{{record}}</p>
+<br><br><br><br><br>
+<!-- Side Area Starts Here -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="user-main-info">
+                <div>
+                    <img style="border-radius: 50%;" src="images/user.jpg" alt="user-avatar" class="avatar" width="200px">
+                </div>
+                <h4 class="user-info">
+                    <span class="user-name">Amadi Austin</span>
+                    <br>
+                    <span class="user-level">300 Level</span>
+                    <br>
+                </h4>
+
+                <a href="#" class="btn btn-user-white">Edit Profile</a>
+
+            </div>
+            <div class="user-functions">
+                <hr>
+                <a href="#" class="btn btn-block"><i class="fa fa-book-open"></i>&nbsp; View Result</a>
+                <hr>
+                <a href="#" class="btn btn-block"><i class="fa fa-calculator"></i>&nbsp; Calculate GP</a>
+                <hr>
+                <a href="#" class="btn btn-block"><i class="fa fa-upload"> </i>&nbsp; Upload Result</a>
+                <hr>
+                <a href="#" class="btn btn-block"><i class="fa fa-cog"></i>&nbsp; Settings</a>
+                <hr>
+                <a href="#" class="btn btn-block"><i class="fa fa-sign-out-alt"></i>&nbsp; Sign Out</a>
+            </div>
+
+        </div>
+        <!-- Side Area Stops Here -->
+
+        <!-- Main Area Starts Here -->
+        <div class="col-sm-8">
+
+            <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+                    <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
+                        {{successMsg}}
+                    </div>
+                    <div>
+                        {{#if hasErrors}}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {{# each messages }}
+                                <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            {{#if results}}
+            <div class="row">
+                {{# each results}}
+                <div class="col-md-5 offset-md-1">
+                    <h4 class="year-text">{{ this.level }}</h4>
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="d-flex flex-row">
+                                <div class="p-3 item-hl semester-info">
+                                    <h4>{{ this.semester }}</h4>
+                                    <br>
+                                    <h5>Your Grade Point: {{ this.gp }}</h5>
+                                </div>
+                            </div>
+
+                            <div class="average-gp">
+                                <h5>
+                                    <Span><a href="/view/{{ this.id }}">Click To View More Details</a> </Span>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{/each}}
+            </div>
+
+
+        </div>
+        {{else}}
+
+        <h3>Welcome To Result Tracker
+            <a href="/app">Click Here </a>To Start Tracking Your Results
+        </h3>
+
+        {{/if}}
+        <!-- Main Area Stops Here -->
+    </div>
+</div>
