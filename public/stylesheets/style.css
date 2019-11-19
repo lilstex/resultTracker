@@ -134,4 +134,15 @@ h1{
     background-color: rgb(6, 192, 167);
     
 }
+<<<<<<< HEAD
+#mybtn{
+    margin-top: 10px;
+    border: 2px solid white;
+    border-radius: 24px;
+    padding: 6px;
+    color:white;
+    background-color: rgb(192, 111, 6);
+}
+=======
 >>>>>>> d650d0650f487f6316b2e063e3301e6d6b4f2aa4
+>>>>>>> 0f45927d6fe44679ca480e7a0a86fbb5e1ac4a11
