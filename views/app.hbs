@@ -12,30 +12,22 @@
                    <div class="col-md-2"></div>
                    <div class="col-md-8">
                        <div id="main" class="card card-body">
-                            <h3 class="title">Enter Your School Details</h3> 
+                            <h3 class="title">Welcome</h3> 
                            <div class="row">
                                <div class="col-md-2"></div>
                                 <div class="col-md-8">
                                      <form action="/app" method="POST" id='form' class="contact-form">
                                     
                                     <input  style="color:black" type="number" id="loopNumber" class="form-control mb-2"
-                                        placeholder="Enter number of courses" name="noOfCourses"><br>
-                                       
-                                    <select style="color:black" class="form-control mb-2" name="semester" id="semester">
-                                        <option value="first" >FirstSemester</option>
-                                        <option value="second">SecondSemester</option>
-                                    </select><br>
-                                        
-                                    <select style="color:black" class="form-control mb-2" id="year" name="year"> 
-                                    </select>
-                                    
+                                        placeholder="Enter number of courses" name="NumberOfCourses"><br>
+                                    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                                     <button style="color:white" id="button" 
                                     class="form-control mb-2 btn btn-primary">ENTER</button>
                                     <div class="card card-body" id="resultDisplay" style="display: none;"></div>
                                     <div class="form-group" id="div">
                                     <button  id="reset" class="btn btn-primary" style="display: none;">RESET</button>
                                     <button  id="save" class="btn btn-primary" type="submit"
-                                    style="display: none;float: right">SAVE</button> 
+                                    style="display: none;float: right">PROCEED TO SAVE</button> 
                         
                                 </form>
                                 </div>
@@ -48,22 +40,6 @@
             
         </div> 
 
-        <script>
-         let select = document.getElementById('year');
-                let currYear = new Date().getFullYear();
-                let futureYear = currYear+3;
-                let pastYear = currYear-3;
-
-                for(let year = pastYear; year <= futureYear; year++){
-                let option = document.createElement('option');
-                option.setAttribute('value', year);
-                if(year === currYear){
-                    option.setAttribute('selected', true);
-                }
-                option.innerHTML = `${year} - ${year + 1}`;
-                select.appendChild(option);
-                }
-        </script>
-    
+       
     <script type="text/javascript" src="javascripts/app.js"></script>
     
