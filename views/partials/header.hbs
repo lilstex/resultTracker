@@ -1,81 +1,85 @@
 <header class="header trans_200">
-		<!-- Header Content -->
-		<div class="header_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_content d-flex flex-row align-items-center justify-content-start">
-							<nav class="main_nav ml-auto">
-								<ul>
-									<li><a href="/">Home</a></li>
-									<li><a href="/about">FAQS</a></li>
-									<li><a href="/contact">Contact Us</a></li>
-									{{# if isLogin }}
-									<li><a href="/dashboard">Dashboard</a></li>
-									<li><a href="/logout" class="btn btn-danger">Logout</a></li>
-									{{ else }}
-									<li><a class="btn btn-warning" href="/signup">SignUp</a></li>
-									<li><a href="/signin">SignIn</a></li>
-									{{/if }}
-									
-									
-									
-								</ul>
-							</nav>
-							<div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+	<!-- Header Content -->
+	<div class="header_container">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start">
+						<nav class="main_nav ml-auto">
+
+							<ul>
+								<li><a href="/">Home</a></li>
+								<li><a href="/about">FAQS</a></li>
+								<li><a href="/contact">Contact Us</a></li>
+								{{# if isLogin }}
+								<li><a href="/dashboard">Dashboard</a></li>
+								<li><a href="/logout" class="btn btn-danger">Logout</a></li>
+								{{ else }}
+								<li><a class="btn btn-warning" href="/signup">SignUp</a></li>
+								<li><a href="/signin">SignIn</a></li>
+								{{/if }}
+
+
+
+							</ul>
+						</nav>
+						<div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Logo -->
+	<div class="logo_container_outer">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="logo_container">
+						<div class="logo_sub">
+							<span>
+								<img style="max-width: 100px;" class="logo" src="images/result.png">
+							</span>
+							<p style="color:rgb(6, 192, 167);">Developer Student Clubs Imsu</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- Logo -->
-		<div class="logo_container_outer">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="logo_container"> <img class="logo" src="image/result.png">	
-								<div class="logo_sub" >
-									<p style="color:rgb(6, 192, 167);">Developer Student Clubs Imsu</p>
-								</div>
-						</div>
-					</div>
-				</div>
-			</div>	
-		</div>
-
-	</header>
+</header>
 
 <!-- Menu -->
 
-	<div class="menu_container menu_mm">
+<div class="menu_container menu_mm">
 
-		<!-- Menu Close Button -->
-		<div class="menu_close_container">
-			<div class="menu_close"></div>
+	<!-- Menu Close Button -->
+	<div class="menu_close_container">
+		<div class="menu_close"></div>
+	</div>
+
+	<!-- Menu Items -->
+	<div class="menu_inner menu_mm">
+		<div class="menu menu_mm">
+			<ul class="menu_list menu_mm">
+				<li class="menu_item menu_mm"><a href="/">Home</a></li>
+				<li class="menu_item menu_mm"><a href="/about">FAQS</a></li>
+				<li class="menu_item menu_mm"><a href="/contact">Contact Us</a></li>
+				{{# if isLogin }}
+				<li class="menu_item menu_mm"><a href="/dashboard">Dashboard</a></li>
+				<li class="menu_item menu_mm"><a href="/logout" class="btn btn-danger">Logout</a></li>
+				{{ else }}
+				<li class="menu_item menu_mm"><a class="btn btn-warning" href="/signup">Signup</a></li>
+				<li class="menu_item menu_mm"><a href="/signin">Signin</a></li>
+				{{/if }}
+			</ul>
 		</div>
-
-		<!-- Menu Items -->
-		<div class="menu_inner menu_mm">
-			<div class="menu menu_mm">
-				<ul class="menu_list menu_mm">
-					<li class="menu_item menu_mm"><a href="/">Home</a></li>
-					<li class="menu_item menu_mm"><a href="/about">FAQS</a></li>
-					<li class="menu_item menu_mm"><a href="/contact">Contact Us</a></li>
-					{{# if isLogin }}
-					<li class="menu_item menu_mm"><a href="/dashboard">Dashboard</a></li>
-					<li class="menu_item menu_mm"><a href="/logout" class="btn btn-danger">Logout</a></li>
-					{{ else }}
-					<li class="menu_item menu_mm"><a class="btn btn-warning" href="/signup">Signup</a></li>
-					<li class="menu_item menu_mm"><a href="/signin">Signin</a></li>
-					{{/if }}
-				</ul>
-			</div>
-			<div class="menu_extra">
-				<div class="menu_appointment"><a href="#">Developer Student Clubs Imsu</a></div>
-				<div class="menu_emergencies">Team Members</div>
-			</div>
-
+		<div class="menu_extra">
+			<div class="menu_appointment"><a href="#">Developer Student Clubs Imsu</a></div>
+			<div class="menu_emergencies">Team Members</div>
 		</div>
 
 	</div>
+
+</div>

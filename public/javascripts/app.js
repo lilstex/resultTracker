@@ -188,12 +188,30 @@
                 mgp = Math.round(gp / total_courseunit * 100) / 100;
                 let display = document.getElementById("header-title");
                 if (mgp) {
-                    display.innerHTML = `Your GP Calculation IS ${mgp}`;
+                    display.style.margin = '5px';
+                    display.style.border = '2px solide black';
+                    display.style.padding = '24px';
+                    display.style.borderRadius = '12px';
+                    display.style.backgroundColor = 'rgb(6, 192, 167)';
+                    display.style.color = 'white';
+                    display.innerHTML = `GRADE POINT: ${mgp}`;
                 } else if (mgp == 0) {
-                    display.innerHTML = `Your GP Calculation IS ${mgp}`;
+                    display.style.margin = '5px';
+                    display.style.border = '2px solide black';
+                    display.style.padding = '24px';
+                    display.style.borderRadius = '12px';
+                    display.style.backgroundColor = 'rgb(6, 192, 167)';
+                    display.style.color = 'white';
+                    display.innerHTML = ` GRADE POINT: ${mgp}`;
                 }
                 else {
-                    display.innerHTML = `Invalid Calculation`;
+                    display.style.margin = '5px';
+                    display.style.border = '2px solide black';
+                    display.style.padding = '24px';
+                    display.style.borderRadius = '12px';
+                    display.style.backgroundColor = 'rgb(6, 192, 167)';
+                    display.style.color = 'white';
+                    display.innerHTML = `INVALID CALCULATION`;
                 }
 
                 //getting gp result value to backend
