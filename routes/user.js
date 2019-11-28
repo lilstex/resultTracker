@@ -45,31 +45,18 @@ router.get('/view/:_id', isLoggedIn, function(req,res,next){
         resultData = Object.values(singleResult.resultsData);
         resultKey = Object.keys(singleResult.resultsData);
       });
-     
-      // console.log(result);
-      // console.log(resultData);
-      // console.log(resultKey);
       res.render('user/view',{result:result, resultData:resultData, resultKey:resultKey});
   });
-
-  
-
 });
-
-// router.get('/dashboard', isLoggedIn, function (req, res, next) {
-    //   let successMsg = req.flash('success')[0];
-    //   let messages = req.flash('error');
-    //   Result.find({ user: req.user }, function (err, results) {
-    //     if (err) {
-    //       res.write('Error!');
-    //     }
-    //     let resultData;
-    //     let resultKey;
-    //     results.forEach(function (result) {
-    //       resultData = Object.values(result.resultsData);
-    //       resultKey = Object.keys(result.resultsData);
-    //       //console.log(resultKey);
-    //     });
+router.get('/delete/:_id', isLoggedIn, function(req,res,next){
+  Result.findOneAndRemove({ _id: req.params._id},
+    function (err, result) {
+      if(err) {
+        return errHandler(err);
+      }
+    });
+    res.redirect('/dashboard');
+});
 
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
