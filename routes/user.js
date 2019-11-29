@@ -3,6 +3,7 @@ let router = express.Router();
 let csrf = require('csurf');
 const passport = require('passport');
 let Result = require('../models/result');
+let User = require('../models/user');
 
 let csrfProtection = csrf();
 router.use(csrfProtection);
@@ -44,19 +45,21 @@ router.get('/delete_confirmed/:_id', isLoggedIn, function (req, res, next) {
 router.get('/dashboard', isLoggedIn, function (req, res, next) {
   let successMsg = req.flash('success')[0];
   let messages = req.flash('error');
+
   Result.find({ user: req.user }, function (err, results) {
     if (err) {
       res.write('Error!');
     }
-    results.forEach(function (result) {
-     
+      let user = req.user;
+      res.render('user/dashboard', { 
+        results: results, user:user,
+        messages: messages, hasErrors: messages.length > 0, 
+        successMsg: successMsg, noMessages: !successMsg
     });
-    res.render('user/dashboard', { 
-      results: results, 
-      messages: messages, hasErrors: messages.length > 0, 
-      successMsg: successMsg, noMessages: !successMsg
-    });
+   
   });
+
+
 });
 
 router.get('/view/:_id', isLoggedIn, function(req,res,next){
