@@ -3,10 +3,15 @@ let router = express.Router();
 let Result = require('../models/result');
 
 
+
+
 router.get('/', function (req, res, next) {
 
   res.render('index', { title: 'ResultTracker' });
 });
+
+
+
 
 
 router.post('/app', function (req, res, next) {

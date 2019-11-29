@@ -5,35 +5,17 @@
     }
 </style>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-            <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
-                {{successMsg}}
-            </div>
-            <div>
-                {{#if hasErrors}}
-                <div class="alert alert-danger">
-                    <ul>
-                        {{# each messages }}
-                        <li>{{this}}</li>
-                        {{/each}}
-                    </ul>
 
-                </div>
-                {{/if}}
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid" style="margin-top: 200px; z-index: 100;" id="fsd">
+<div class="container-fluid" style="margin-top: 200px; z-index: 100" id="fsd">
     <div class="panel panel-default text-center">
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-4">
                     <img src="images/emptyimage.jpeg" width="150px" class="avatar" alt="Add Your picture">
                     <ul>
-                        <li><h3>Amadi Austin Chukwuemeka</h3></li>
+                        <li>
+                            <h3>Amadi Austin Chukwuemeka</h3>
+                        </li>
                         <li> <a class='btn btn-success' href="">Edit Profile details</a> </li>
                         <hr>
                         <li> <a class='btn btn-success' href="/app">Calculate Result</a> </li>
@@ -47,6 +29,9 @@
                             <div id="success" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
                                 {{successMsg}}
                             </div>
+                            {{!-- <div class="alert alert-danger" role="alert" id="deleteAlert">
+                                
+                            </div> --}}
                             <div>
                                 {{#if hasErrors}}
                                 <div class="alert alert-danger">
@@ -85,7 +70,9 @@
                                             <span class="btn btn-success" style="float:left;margin-left:10px">
                                                 <a style="color:white;" href="/view/{{ this.id }}">View</a> </span>
                                             <span class="btn btn-danger" style="float:right;margin-right:10px">
-                                                <a style="color:white" href="/delete/{{ this.id }}">Delete</a> </span>
+                                                <a id="delete" style="color:white" href="/delete/{{ this.id }}">Delete</a> </span>
+
+
                                         </h5>
                                     </div>
                                 </div>
@@ -96,7 +83,7 @@
 
                         {{/each}}
                     </div>
-                    
+
 
 
                 </div>
@@ -117,3 +104,4 @@
         </div>
     </div>
 </div>
+
