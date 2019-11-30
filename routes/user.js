@@ -71,6 +71,7 @@ router.get('/view/:_id', isLoggedIn, function(req,res,next){
       let resultData;
       let resultKey;
       result.forEach(function(singleResult) {
+
         resultData = Object.values(singleResult.resultsData);
         resultKey = Object.keys(singleResult.resultsData);
       });

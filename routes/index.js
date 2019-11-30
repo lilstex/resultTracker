@@ -15,7 +15,9 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/app', function (req, res, next) {
-  req.session.resultData = req.body;
+let objectData = req.body;
+  delete objectData._csrf;
+  req.session.resultData = objectData;
   req.session.gp = req.body.gp;
   res.redirect('save');
 });
