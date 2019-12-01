@@ -97,16 +97,12 @@
 
 @media only screen and (max-width: 991px)
 {
-
-	.col-sm-3 {
-		display: none;
-	}
-	.user-functions{
-		display: none;
-	}
-.user-main-info{
-	display: none;
+#fsd{
+	margin-top: 0px;
 }
+	#sd{
+		margin-top: 50px;
+	}
 
 	.col-lg-3{
 		display: none;
@@ -335,7 +331,7 @@
 	{
 		font-size: 10px;
 		padding-left: 1px;
-		display: none;
+		/* display: none; */
 		
 	}
 	.menu
