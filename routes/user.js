@@ -45,14 +45,27 @@ router.get('/delete_confirmed/:_id', isLoggedIn, function (req, res, next) {
 router.get('/dashboard', isLoggedIn, function (req, res, next) {
   let successMsg = req.flash('success')[0];
   let messages = req.flash('error');
-
+  
   Result.find({ user: req.user }, function (err, results) {
     if (err) {
       res.write('Error!');
     }
+    let arrayOfGp = [];
+    
+    results.forEach(function(singleResult) {
+      arrayOfGp.push(singleResult.gp) ;
+    });
+
+   let gpSum = 0;
+    for(let i = 0; i < arrayOfGp.length; i++) {
+     gpSum = gpSum + arrayOfGp[i];
+    }
+    
+    const cgpa = gpSum/arrayOfGp.length;
+  
       let user = req.user;
       res.render('user/dashboard', { 
-        results: results, user:user,
+        results: results, user:user, cgpa:cgpa, nocgpa: cgpa == null,
         messages: messages, hasErrors: messages.length > 0, 
         successMsg: successMsg, noMessages: !successMsg
     });
