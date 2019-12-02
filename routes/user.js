@@ -71,9 +71,18 @@ router.get('/dashboard', isLoggedIn, function (req, res, next) {
     });
    
   });
-
-
 });
+
+router.get('/editprofile', function(req, res,next){
+
+
+
+  
+res.render('user/edit');
+
+})
+
+
 
 router.get('/view/:_id', isLoggedIn, function(req,res,next){
   Result.find({ _id: req.params._id},
