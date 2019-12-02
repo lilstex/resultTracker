@@ -33,11 +33,11 @@ router.get('/delete_confirmed/:_id', isLoggedIn, function (req, res, next) {
       if (err) {
         return errHandler(err);
       }
-   
+
     });
-    req.flash('error', 'Deleted Succefully');
-    res.redirect(307,'/dashboard');
-   
+  req.flash('error', 'Deleted Succefully');
+  res.redirect(307, '/dashboard');
+
 });
 
 
@@ -45,60 +45,59 @@ router.get('/delete_confirmed/:_id', isLoggedIn, function (req, res, next) {
 router.get('/dashboard', isLoggedIn, function (req, res, next) {
   let successMsg = req.flash('success')[0];
   let messages = req.flash('error');
-  
+
   Result.find({ user: req.user }, function (err, results) {
     if (err) {
       res.write('Error!');
     }
     let arrayOfGp = [];
-    
-    results.forEach(function(singleResult) {
-      arrayOfGp.push(singleResult.gp) ;
+
+    results.forEach(function (singleResult) {
+      arrayOfGp.push(singleResult.gp);
     });
 
-   let gpSum = 0;
-    for(let i = 0; i < arrayOfGp.length; i++) {
-     gpSum = gpSum + arrayOfGp[i];
+    let gpSum = 0;
+    for (let i = 0; i < arrayOfGp.length; i++) {
+      gpSum = gpSum + arrayOfGp[i];
     }
-    
-    const cgpa = gpSum/arrayOfGp.length;
-  
-      let user = req.user;
-      res.render('user/dashboard', { 
-        results: results, user:user, cgpa:cgpa, nocgpa: cgpa == null,
-        messages: messages, hasErrors: messages.length > 0, 
-        successMsg: successMsg, noMessages: !successMsg
+
+    const cgpa = gpSum / arrayOfGp.length;
+
+    let user = req.user;
+    res.render('user/dashboard', {
+      results: results, user: user, cgpa: cgpa, nocgpa: cgpa == null,
+      messages: messages, hasErrors: messages.length > 0,
+      successMsg: successMsg, noMessages: !successMsg
     });
-   
+
   });
 });
 
-router.get('/editprofile', function(req, res,next){
+router.get('/editprofile', isLoggedIn, function (req, res, next) {
 
-
-
-  
-res.render('user/edit');
+  let user = req.user;
+  console.log(user)
+  res.render('user/edit', { user: user });
 
 })
 
 
 
-router.get('/view/:_id', isLoggedIn, function(req,res,next){
-  Result.find({ _id: req.params._id},
+router.get('/view/:_id', isLoggedIn, function (req, res, next) {
+  Result.find({ _id: req.params._id },
     function (err, result) {
-      if(err) {
+      if (err) {
         return errHandler(err);
       }
       let resultData;
       let resultKey;
-      result.forEach(function(singleResult) {
+      result.forEach(function (singleResult) {
 
         resultData = Object.values(singleResult.resultsData);
         resultKey = Object.keys(singleResult.resultsData);
       });
-      res.render('user/view',{result:result, resultData:resultData, resultKey:resultKey});
-  });
+      res.render('user/view', { result: result, resultData: resultData, resultKey: resultKey });
+    });
 });
 
 
