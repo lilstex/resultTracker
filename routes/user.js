@@ -83,11 +83,11 @@ router.get('/edit', isLoggedIn, function (req, res, next) {
 
 router.post('/edit', isLoggedIn, function (req, res, next) {
 
-  User.findOne({email: req.user.email},function(err, user) {
+  User.findOne({ email: req.user.email }, function (err, user) {
 
     // todo: don't forget to handle err
 
-    if(err) {
+    if (err) {
       req.flash('error', 'No account found');
       return res.redirect('/edit');
     }
@@ -105,7 +105,7 @@ router.post('/edit', isLoggedIn, function (req, res, next) {
     let department = req.body.department.trim();
 
     // validate 
-    if (!email || !name || !matnumber || !school || !department) { 
+    if (!email || !name || !matnumber || !school || !department) {
       req.flash('error', 'One or more fields are empty');
       return res.redirect('/edit'); // modified
     }
@@ -122,13 +122,13 @@ router.post('/edit', isLoggedIn, function (req, res, next) {
       // todo: don't forget to handle err
       if (err) {
         req.flash('error', 'Sorry error occured');
-       return res.redirect('/edit'); // modified
-    }
-    req.flash('success', 'Profile Updated Successfully');
-    res.redirect('/dashboard');
+        return res.redirect('/edit'); // modified
+      }
+      req.flash('success', 'Profile Updated Successfully');
+      res.redirect('/dashboard');
     });
   });
-  
+
 })
 
 
