@@ -73,12 +73,62 @@ router.get('/dashboard', isLoggedIn, function (req, res, next) {
   });
 });
 
-router.get('/editprofile', isLoggedIn, function (req, res, next) {
+router.get('/edit', isLoggedIn, function (req, res, next) {
+  let messages = req.flash('error');
 
   let user = req.user;
-  console.log(user)
-  res.render('user/edit', { user: user });
+  res.render('user/edit', { csrfToken: req.csrfToken(), user: user, messages: messages, hasErrors: messages.length > 0, });
 
+});
+
+router.post('/edit', isLoggedIn, function (req, res, next) {
+
+  User.findOne({email: req.user.email},function(err, user) {
+
+    // todo: don't forget to handle err
+
+    if(err) {
+      req.flash('error', 'No account found');
+      return res.redirect('/edit');
+    }
+
+    if (!user) {
+      req.flash('error', 'No account found');
+      return res.redirect('/edit');
+    }
+
+    // good idea to trim 
+    let name = req.body.name.trim();
+    let email = req.body.email.trim();
+    let matnumber = req.body.matnumber.trim();
+    let school = req.body.school.trim();
+    let department = req.body.department.trim();
+
+    // validate 
+    if (!email || !name || !matnumber || !school || !department) { 
+      req.flash('error', 'One or more fields are empty');
+      return res.redirect('/edit'); // modified
+    }
+
+    user.name = req.body.name;
+    user.email = email;
+    user.matnumber = req.body.matnumber;
+    user.school = req.body.school;
+    user.department = req.body.department;
+
+    // don't forget to save!
+    user.save(function (err) {
+
+      // todo: don't forget to handle err
+      if (err) {
+        req.flash('error', 'Sorry error occured');
+       return res.redirect('/edit'); // modified
+    }
+    req.flash('success', 'Profile Updated Successfully');
+    res.redirect('/dashboard');
+    });
+  });
+  
 })
 
 
