@@ -36,6 +36,31 @@ To install the dependencies the app is using run the command (ensure you have no
 ```
 npm install
 ```
+## DATABASE SETUP
+We are using MongoDb which is a noSql database
+
+### Follow the link below to  download and install MongoDb server(MSI VERSION)
+https://www.mongodb.com/download-center/community
+
+### Follow the link below to download and install MongoDb Compass
+https://www.mongodb.com/download-center/compass
+
+### After installation 
+Go to your root folder and create a new file and save it as
+```
+.env
+```
+### Copy the content of the .env.example file and paste it inside the .env file you created
+
+### Then go to your app.js file in your root folder(LINE 28) AND REPLACE
+```
+process.env.DATABASE_URL
+```
+### WITH
+```
+process.env.LOCAL_DB_URL
+```
+
 To start the application on your localhost run the command
 
 ```
