@@ -4,6 +4,18 @@ let csrf = require('csurf');
 const passport = require('passport');
 let Result = require('../models/result');
 let User = require('../models/user');
+const multer = require("multer");
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
+
+
+const storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: "Profile",
+  allowedFormats: ["jpg", "png"],
+  transformation: [{ width: 500, height: 500, crop: "limit" }]
+  });
+const parser = multer({ storage: storage });
 
 let csrfProtection = csrf();
 router.use(csrfProtection);
@@ -81,9 +93,19 @@ router.get('/edit', isLoggedIn, function (req, res, next) {
 
 });
 
-router.post('/edit', isLoggedIn, function (req, res, next) {
+router.post('/edit', parser.single("image"), isLoggedIn, function (req, res, next) {
 
   User.findOne({ email: req.user.email }, function (err, user) {
+    // for cloudinary upload
+    console.log(req.file) // to see what is returned to you
+    //const image = {};
+    // image.url = req.file.url;
+    // image.id = req.file.public_id;
+    // Image.create(image) // save image information in database
+    //   .then(newImage => res.json(newImage))
+    //   .catch(err => console.log(err));
+
+
 
     // todo: don't forget to handle err
 
@@ -103,6 +125,7 @@ router.post('/edit', isLoggedIn, function (req, res, next) {
     let matnumber = req.body.matnumber.trim();
     let school = req.body.school.trim();
     let department = req.body.department.trim();
+    
 
     // validate 
     if (!email || !name || !matnumber || !school || !department) {
@@ -115,6 +138,7 @@ router.post('/edit', isLoggedIn, function (req, res, next) {
     user.matnumber = req.body.matnumber;
     user.school = req.body.school;
     user.department = req.body.department;
+    user.image = req.file.url;
 
     // don't forget to save!
     user.save(function (err) {

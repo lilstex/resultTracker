@@ -12,6 +12,10 @@ const mongoose = require('mongoose');
 const validator= require('express-validator'); 
 const MongoStore = require('connect-mongo')(session);
 
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
+
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
  
@@ -30,12 +34,25 @@ mongoose.connect(process.env.LOCAL_DB_URL, mongooseOptions, function(err) {
         console.error('System could not connect to mongo server.');
         console.log(err) ;    
     } else {
+     
         console.log('System connected to mongo server.');
     } 
 });
 
 require('./config/passport');
 app.listen(process.env.PORT || 8000);
+
+// for profile image upload
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+  });
+  
+  
+
+
 // view engine setup
 app.engine('.hbs',expressHbs({defualtLayout:'layout',extname:'.hbs'}));
 // app.set('views', path.join(__dirname, 'views'));
