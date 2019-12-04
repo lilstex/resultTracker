@@ -1,0 +1,48 @@
+<div class="container" >
+    {{# each result}}
+    <div class="row">
+        <div class="col-lg-3  bg bg-primary" style="margin-top:250px; z-index: 100">
+            <br><br><br><br> <br> <br><br><br><br> <br>
+            <br><br><br><br>
+
+            <h2 style="color: white;">ResultTracker</h2>
+
+            <br><br><br><br> <br> <br><br><br><br> <br>
+            <br><br><br><br> <br>
+        </div>
+        <div class="col-md-2 col-md-offset-2"></div>
+        <div class="col-md-5 col-md-offset-5">
+            <br><br><br><br> <br>
+            <div class="shadow p-5">
+                <h3>{{ this.semester}} {{ this.level }}</h3>
+                <div>
+                    {{#if hasErrors}}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {{# each messages }}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+
+                    </div>
+                    {{/if}}
+                </div>
+                <h5>
+                    <center>ARE YOU SURE YOU WANT TO DELETE</center>
+                </h5>
+                     
+                <a class="btn btn-danger btn block col-md-12" href="/delete_confirmed/{{ this.id }}" >Delete</a>
+<hr>
+                <a class="btn btn-primary" href="/dashboard">Back</a>
+           
+            </div>
+           
+        </div>
+        <div class="col-md-2 col-md-offset-2"></div>
+    </div>
+
+
+
+
+    {{/each}}
+</div>

@@ -3,6 +3,7 @@ let router = express.Router();
 let csrf = require('csurf');
 const passport = require('passport');
 let Result = require('../models/result');
+let User = require('../models/user');
 
 let csrfProtection = csrf();
 router.use(csrfProtection);
@@ -15,22 +16,50 @@ router.get('/save', isLoggedIn, function (req, res, next) {
   res.render('save', { csrfToken: req.csrfToken() });
 });
 
+
+router.get('/delete/:_id', isLoggedIn, function (req, res, next) {
+  Result.find({ _id: req.params._id },
+    function (err, result) {
+      if (err) {
+        return errHandler(err);
+      }
+      res.render('delete', { result: result });
+    });
+});
+
+router.get('/delete_confirmed/:_id', isLoggedIn, function (req, res, next) {
+  Result.findOneAndRemove({ _id: req.params._id },
+    function (err, result) {
+      if (err) {
+        return errHandler(err);
+      }
+   
+    });
+    req.flash('error', 'Deleted Succefully');
+    res.redirect(307,'/dashboard');
+   
+});
+
+
+
 router.get('/dashboard', isLoggedIn, function (req, res, next) {
   let successMsg = req.flash('success')[0];
   let messages = req.flash('error');
+
   Result.find({ user: req.user }, function (err, results) {
     if (err) {
       res.write('Error!');
     }
-    results.forEach(function (result) {
-     
+      let user = req.user;
+      res.render('user/dashboard', { 
+        results: results, user:user,
+        messages: messages, hasErrors: messages.length > 0, 
+        successMsg: successMsg, noMessages: !successMsg
     });
-    res.render('user/dashboard', {
-      results: results, 
-      messages: messages, hasErrors: messages.length > 0, 
-      successMsg: successMsg, noMessages: !successMsg
-    });
+   
   });
+
+
 });
 
 router.get('/view/:_id', isLoggedIn, function(req,res,next){
@@ -42,34 +71,13 @@ router.get('/view/:_id', isLoggedIn, function(req,res,next){
       let resultData;
       let resultKey;
       result.forEach(function(singleResult) {
+
         resultData = Object.values(singleResult.resultsData);
         resultKey = Object.keys(singleResult.resultsData);
       });
-     
-      // console.log(result);
-      // console.log(resultData);
-      // console.log(resultKey);
       res.render('user/view',{result:result, resultData:resultData, resultKey:resultKey});
   });
-
-  
-
 });
-
-// router.get('/dashboard', isLoggedIn, function (req, res, next) {
-    //   let successMsg = req.flash('success')[0];
-    //   let messages = req.flash('error');
-    //   Result.find({ user: req.user }, function (err, results) {
-    //     if (err) {
-    //       res.write('Error!');
-    //     }
-    //     let resultData;
-    //     let resultKey;
-    //     results.forEach(function (result) {
-    //       resultData = Object.values(result.resultsData);
-    //       resultKey = Object.keys(result.resultsData);
-    //       //console.log(resultKey);
-    //     });
 
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
