@@ -16,12 +16,24 @@
                         <li>
                             <h3>{{ user.name }}</h3>
                         </li>
-                         <li>
+                        <li>
                             <h3>{{ user.matnumber }}</h3>
                         </li>
-                        <li> <a class='btn btn-success' href="">Edit Profile details</a> </li>
+                        <li> <a class='btn btn-success' href="/edit">Edit Profile details</a> </li>
                         <hr>
                         <li> <a class='btn btn-success' href="/app">Calculate Result</a> </li>
+                        <hr>
+                        <li>
+                            <h4>CGPA<button class='btn btn-success'>
+                                {{#if cgpa}}
+                                    {{cgpa}}
+                                {{else}}
+                                    No Grade Point</button>
+                                {{/if}}
+                        </li>
+                        </h4>
+                        </li>
+                        <hr>
                     </ul>
                 </div>
                 <!-- Main Area Starts Here -->
@@ -73,7 +85,8 @@
                                             <span class="btn btn-success" style="float:left;margin-left:10px">
                                                 <a style="color:white;" href="/view/{{ this.id }}">View</a> </span>
                                             <span class="btn btn-danger" style="float:right;margin-right:10px">
-                                                <a id="delete" style="color:white" href="/delete/{{ this.id }}">Delete</a> </span>
+                                                <a id="delete" style="color:white"
+                                                    href="/delete/{{ this.id }}">Delete</a> </span>
 
 
                                         </h5>
@@ -107,4 +120,3 @@
         </div>
     </div>
 </div>
-
