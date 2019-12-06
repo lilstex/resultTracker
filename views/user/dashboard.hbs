@@ -14,7 +14,7 @@
                     {{#if user.image}}
                     <img src="{{ user.image }}" width="100px" class="avatar" alt="No internet access">
                     {{else}}
-                    <img src="images/emptyimage.jpeg" width="10 0px" class="avatar" alt="Add Your picture">
+                    <img src="images/emptyimage.jpeg" width="100px" class="avatar" alt="Add Your picture">
                     {{/if}}
                     <form method="post" action="/upload?_csrf={{ csrfToken }}" novalidate enctype="multipart/form-data">
                         <div class="form-group">
