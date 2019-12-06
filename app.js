@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 const validator= require('express-validator'); 
 const MongoStore = require('connect-mongo')(session);
 
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary").v2;
 const cloudinaryStorage = require("multer-storage-cloudinary");
 
 
