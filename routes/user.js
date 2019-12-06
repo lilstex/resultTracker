@@ -97,14 +97,8 @@ router.post('/edit', parser.single("image"), isLoggedIn, function (req, res, nex
 
   User.findOne({ email: req.user.email }, function (err, user) {
     // for cloudinary upload
-    console.log(req.file) // to see what is returned to you
-    //const image = {};
-    // image.url = req.file.url;
-    // image.id = req.file.public_id;
-    // Image.create(image) // save image information in database
-    //   .then(newImage => res.json(newImage))
-    //   .catch(err => console.log(err));
-
+    //console.log(req.file) // to see what is returned to you
+    
 
 
     // todo: don't forget to handle err
