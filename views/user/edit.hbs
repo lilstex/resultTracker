@@ -29,7 +29,7 @@
                 </div>
                 {{/if}}
             </div>
-            <form method="post" action="/edit?_csrf={{ csrfToken }}" novalidate enctype="multipart/form-data" > 
+            <form method="post" action="/edit" > 
                 <div class="form-group">
                     <label for="title">Name:</label>
                     <input type="text" name="name" class="form-control" placeholder="Enter You Name" value="{{ user.name}}" required>
@@ -53,11 +53,8 @@
                         >
                 </div>
                
-               <div class="form-group">
-                    <label for="title">Upload Image</label>
-                    <input type="file" name="image" class="form-control"  value="{{ user.image }}">
-                </div> 
-                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+              
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}" >
                 <input type="submit" value="UPDATE" class="btn btn-primary btn block col-md-12"><br><br>
                 
             </form>
