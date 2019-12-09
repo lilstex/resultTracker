@@ -12,8 +12,8 @@ const mongoose = require('mongoose');
 const validator= require('express-validator'); 
 const MongoStore = require('connect-mongo')(session);
 
-const cloudinary = require("cloudinary");
-const cloudinaryStorage = require("multer-storage-cloudinary");
+const cloudinary = require("cloudinary").v2;
+
 
 
 const indexRouter = require('./routes/index');
@@ -34,7 +34,7 @@ mongoose.connect(process.env.DATABASE_URL, mongooseOptions, function(err) {
         console.error('System could not connect to mongo server.');
         console.log(err) ;    
     } else {
-     
+     //console.log(process.env.API_KEY)
         console.log('System connected to mongo server.');
     } 
 });
