@@ -15,7 +15,6 @@ const MongoStore = require('connect-mongo')(session);
 const cloudinary = require("cloudinary").v2;
 
 
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
  
