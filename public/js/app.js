@@ -188,29 +188,30 @@
                 mgp = Math.round(gp / total_courseunit * 100) / 100;
                 let display = document.getElementById("header-title");
                 if (mgp) {
-                    display.style.margin = '5px';
-                    display.style.border = '2px solide black';
-                    display.style.padding = '24px';
-                    display.style.borderRadius = '12px';
-                    display.style.backgroundColor = 'rgb(6, 192, 167)';
-                    display.style.color = 'white';
+                    let style = { margin: '5px', border: '2px solid black', padding: '24px', borderRadius: '12px', color: 'white', backgroundColor: 'rgb(6, 192, 167)' }
+                    Object.entries(style).map(entry => {
+                        let [property, value] = entry;
+                        console.log([property, value])
+                        display.style[property] = value;
+                    });
                     display.innerHTML = `GRADE POINT: ${mgp}`;
                 } else if (mgp == 0) {
-                    display.style.margin = '5px';
-                    display.style.border = '2px solide black';
-                    display.style.padding = '24px';
-                    display.style.borderRadius = '12px';
-                    display.style.backgroundColor = 'rgb(6, 192, 167)';
-                    display.style.color = 'white';
+                    let style = { margin: '5px', border: '2px solid black', padding: '24px', borderRadius: '12px', color: 'white', backgroundColor: 'rgb(6, 192, 167)' }
+                    Object.entries(style).map(entry => {
+                        let [property, value] = entry;
+                        console.log([property, value])
+                        display.style[property] = value;
+                    });
                     display.innerHTML = ` GRADE POINT: ${mgp}`;
                 }
                 else {
-                    display.style.margin = '5px';
-                    display.style.border = '2px solid black';
-                    display.style.padding = '24px';
-                    display.style.borderRadius = '12px';
-                    display.style.backgroundColor = 'rgb(6, 192, 167)';
-                    display.style.color = 'white';
+                    let style = { margin: '5px', border: '2px solid black', padding: '24px', borderRadius: '12px', color: 'white', 
+                    backgroundColor: 'red' }
+                    Object.entries(style).map(entry => {
+                        let [property, value] = entry;
+                        console.log([property, value])
+                        display.style[property] = value;
+                    });
                     display.innerHTML = `INVALID CALCULATION`;
                 }
 
@@ -227,59 +228,76 @@
                 resultDisplay.innerHTML = `Your GP Calculation IS ${mgp}`;
 
                 if (mgp >= 4.5) {
-                    resultDisplay.style.textAlign = 'center';
-                     resultDisplay.style.margin = '5px';
-                     resultDisplay.style.border = '2px solid black';
-                     resultDisplay.style.padding = '24px';
-                     resultDisplay.style.borderRadius = '12px';
-                    resultDisplay.style.color = '#ffffff';
-                    resultDisplay.style.backgroundColor = 'rgb(6, 192, 167)';
+                    let style = {
+                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: 'rgb(6, 192, 167)'
+                    };
+                    Object.entries(style).map(entry => {
+                        let [property, value] = entry;
+                        console.log([property, value])
+                        resultDisplay.style[property] = value;
+                    });
                     savebtn.style.display = 'initial';
                 } else if (mgp >= 3.5 && mgp < 4.5) {
-                    resultDisplay.style.textAlign = 'center';
-                     resultDisplay.style.margin = '5px';
-                     resultDisplay.style.border = '2px solid black';
-                     resultDisplay.style.padding = '24px';
-                     resultDisplay.style.borderRadius = '12px';
-                    resultDisplay.style.color = '#ffffff';
-                    resultDisplay.style.backgroundColor = '#001200';
+                    let style = {
+                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#001200'
+                    };
+                    Object.entries(style).map(entry => {
+                        let [property, value] = entry;
+                        console.log([property, value])
+                        resultDisplay.style[property] = value;
+                    });
                     savebtn.style.display = 'initial';
                 }
                 else if (mgp >= 3 && mgp < 3.5) {
-                    resultDisplay.style.textAlign = 'center';
-                     resultDisplay.style.margin = '5px';
-                     resultDisplay.style.border = '2px solid black';
-                     resultDisplay.style.padding = '24px';
-                     resultDisplay.style.borderRadius = '12px';
-                    resultDisplay.style.color = '#ffffff';
-                    resultDisplay.style.backgroundColor = '#f19000';
+
+                    let style = {
+                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#f19000'
+                    };
+                    Object.entries(style).map(entry => {
+                        let [property, value] = entry;
+                        console.log([property, value])
+                        resultDisplay.style[property] = value;
+                    });
+
                     savebtn.style.display = 'initial';
                 } else if (mgp >= 2 && mgp < 3) {
-                    resultDisplay.style.textAlign = 'center';
-                     resultDisplay.style.margin = '5px';
-                     resultDisplay.style.border = '2px solid black';
-                     resultDisplay.style.padding = '24px';
-                     resultDisplay.style.borderRadius = '12px';
-                    resultDisplay.style.color = '#ffffff';
-                    resultDisplay.style.backgroundColor = '#e15000';
+                    let style = {
+                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#e15000'
+                    };
+                    Object.entries(style).map(entry => {
+                        let [property, value] = entry;
+                        console.log([property, value])
+                        resultDisplay.style[property] = value;
+                    });
+
                     savebtn.style.display = 'initial';
                 } else if (mgp >= 0 && mgp < 2) {
-                    resultDisplay.style.textAlign = 'center';
-                    resultDisplay.style.margin = '5px';
-                    resultDisplay.style.border = '2px solid black';
-                    resultDisplay.style.padding = '24px';
-                    resultDisplay.style.borderRadius = '12px';
-                    resultDisplay.style.color = '#ffffff';
-                    resultDisplay.style.backgroundColor = '#ff0000';
+
+                    let style = {
+                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#ff0000'
+                    };
+                    Object.entries(style).map(entry => {
+                        let [property, value] = entry;
+                        console.log([property, value])
+                        resultDisplay.style[property] = value;
+                    });
+
                     savebtn.style.display = 'initial';
                 } else {
-                    resultDisplay.style.textAlign = 'center';
-                     resultDisplay.style.margin = '5px';
-                     resultDisplay.style.border = '2px solid black';
-                     resultDisplay.style.padding = '24px';
-                     resultDisplay.style.borderRadius = '12px';
-                    resultDisplay.style.color = '#ffffff';
-                    resultDisplay.style.backgroundColor = '#ff0000';
+                    let style = {
+                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#ff0000'
+                    };
+                    Object.entries(style).map(entry => {
+                        let [property, value] = entry;
+                        console.log([property, value])
+                        resultDisplay.style[property] = value;
+                    });
                     resultDisplay.innerHTML = `Please enter course unit`;
                     savebtn.style.display = 'none';
                 }
@@ -308,6 +326,3 @@
         }
     });
 })();
-
-
-

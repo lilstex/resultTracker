@@ -557,7 +557,14 @@ pre code {
 
 @media (min-width: 992px) {
   .container {
-    max-width: 960px;
+    max-width: 960px; 
+  }
+  
+}
+@media only screen and (max-width: 991px)
+{
+  .hidebg{
+    display: none;
   }
 }
 
