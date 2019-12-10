@@ -24,18 +24,18 @@
                         <input type="hidden" name="_csrf" value="{{ csrfToken }}" re>
                         <input type="submit" value="Upload Image" class="btn btn-primary"><br><br>
                     </form>
-                    <ul>
-                        <li>
+                    <ul class="list-group">
+                        <li class="list-group-item">
                             <h3>{{ user.name }}</h3>
                         </li>
-                        <li>
+                        <li class="list-group-item">
                             <h3>{{ user.matnumber }}</h3>
                         </li>
-                        <li> <a class='btn btn-success' href="/edit">Edit Profile details</a> </li>
+                        <li class="list-group-item"> <a class='btn btn-success' href="/edit">Edit Profile details</a> </li>
                         <hr>
-                        <li> <a class='btn btn-success' href="/app">Calculate Result</a> </li>
+                        <li class="list-group-item"> <a class='btn btn-success' href="/app">Calculate Result</a> </li>
                         <hr>
-                        <li>
+                        <li class="list-group-item">
                             <h4>CGPA<button class='btn btn-success'>
                                     {{#if cgpa}}
                                     {{cgpa}}
