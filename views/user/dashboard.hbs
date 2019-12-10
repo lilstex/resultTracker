@@ -16,8 +16,8 @@
                     {{/if}}
                     <form method="post" action="/upload?_csrf={{ csrfToken }}" novalidate enctype="multipart/form-data">
                         <div class="form-group">
-                           
-                            <input type="file" name="image" required >
+
+                            <input type="file" name="image" required>
                         </div>
                         <input type="hidden" name="_csrf" value="{{ csrfToken }}" re>
                         <input type="submit" value="Upload Image" class="btn btn-primary"><br><br>
@@ -29,7 +29,7 @@
                         <li class="list-group-item">
                             <h3>{{ user.matnumber }}</h3>
                         </li>
-                        
+
                         <li class="list-group-item">
                             <h4>CGPA<button class='btn btn-primary'>
                                     {{#if cgpa}}
@@ -51,7 +51,7 @@
                             <div id="primary" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
                                 {{successMsg}}
                             </div>
-                           
+
                             <div>
                                 {{#if hasErrors}}
                                 <div class="alert alert-danger">
@@ -99,20 +99,20 @@
                                 </div>
                             </div>
                             <hr>
-                            
+
                         </div>
 
 
                         {{/each}}
-                        
-                        </div>
-                        <div class="row">
-                            <span><a class='btn btn-primary' href="/edit">Edit Profile details</a> </span>
+
+                    </div>
+                    <div class="row">
+                        <span><a class='btn btn-primary' href="/edit">Edit Profile details</a> </span>
                         <hr>
                         <span><a class='btn btn-primary' href="/app">Calculate Result</a> </span>
                         <hr>
                     </div>
-  <hr>
+                    <hr>
 
 
                 </div>
@@ -124,6 +124,13 @@
                     </h3>
 
                 </div>
+                 <div class="row">
+                        <span><a class='btn btn-primary' href="/edit">Edit Profile details</a> </span>
+                        <hr>
+                        <span><a class='btn btn-primary' href="/app">Calculate Result</a> </span>
+                        <hr>
+                    </div>
+                    <hr>
             </div>
 
 
