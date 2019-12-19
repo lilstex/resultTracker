@@ -188,7 +188,7 @@
                 mgp = Math.round(gp / total_courseunit * 100) / 100;
                 let display = document.getElementById("header-title");
                 if (mgp) {
-                    let style = { margin: '5px', border: '2px solid black', padding: '24px', borderRadius: '12px', color: 'white', backgroundColor: 'rgb(6, 192, 167)' }
+                    let style = { margin: '5px', border: '2px solid blue', padding: '24px', borderRadius: '12px', color: 'white', backgroundColor: 'rgb(6, 192, 167)' }
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
                         console.log([property, value])
@@ -196,7 +196,7 @@
                     });
                     display.innerHTML = `GRADE POINT: ${mgp}`;
                 } else if (mgp == 0) {
-                    let style = { margin: '5px', border: '2px solid black', padding: '24px', borderRadius: '12px', color: 'white', backgroundColor: 'rgb(6, 192, 167)' }
+                    let style = { margin: '5px', border: '2px solid blue', padding: '24px', borderRadius: '12px', color: 'white', backgroundColor: 'rgb(6, 192, 167)' }
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
                         console.log([property, value])
@@ -205,7 +205,7 @@
                     display.innerHTML = ` GRADE POINT: ${mgp}`;
                 }
                 else {
-                    let style = { margin: '5px', border: '2px solid black', padding: '24px', borderRadius: '12px', color: 'white', 
+                    let style = { margin: '5px', border: '2px solid blue', padding: '24px', borderRadius: '12px', color: 'white', 
                     backgroundColor: 'red' }
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
@@ -229,74 +229,80 @@
 
                 if (mgp >= 4.5) {
                     let style = {
-                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        textAlign: 'center', margin: '5px', border: '2px solid green',
                         padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: 'rgb(6, 192, 167)'
                     };
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
                         console.log([property, value])
                         resultDisplay.style[property] = value;
+                        display.style[property] = value;
                     });
                     savebtn.style.display = 'initial';
                 } else if (mgp >= 3.5 && mgp < 4.5) {
                     let style = {
-                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        textAlign: 'center', margin: '5px', border: '2px solid #0000ff',
                         padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#0000ff'
                     };
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
                         console.log([property, value])
                         resultDisplay.style[property] = value;
+                        display.style[property] = value;
                     });
                     savebtn.style.display = 'initial';
                 }
                 else if (mgp >= 3 && mgp < 3.5) {
 
                     let style = {
-                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        textAlign: 'center', margin: '5px', border: '2px solid #000080',
                         padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#000080'
                     };
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
                         console.log([property, value])
+                         display.style[property] = value;
                         resultDisplay.style[property] = value;
                     });
 
                     savebtn.style.display = 'initial';
                 } else if (mgp >= 2 && mgp < 3) {
                     let style = {
-                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        textAlign: 'center', margin: '5px', border: '2px solid #e15000',
                         padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#e15000'
                     };
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
                         console.log([property, value])
                         resultDisplay.style[property] = value;
+                         display.style[property] = value;
                     });
 
                     savebtn.style.display = 'initial';
                 } else if (mgp >= 0 && mgp < 2) {
 
                     let style = {
-                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        textAlign: 'center', margin: '5px', border: '2px solid #ff0000',
                         padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#ff0000'
                     };
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
                         console.log([property, value])
                         resultDisplay.style[property] = value;
+                         display.style[property] = value;
                     });
 
                     savebtn.style.display = 'initial';
                 } else {
                     let style = {
-                        textAlign: 'center', margin: '5px', border: '2px solid black',
+                        textAlign: 'center', margin: '5px', border: '2px solid #ff0000',
                         padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#ff0000'
                     };
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
                         console.log([property, value])
                         resultDisplay.style[property] = value;
+                         display.style[property] = value;
                     });
                     resultDisplay.innerHTML = `Please enter course unit`;
                     savebtn.style.display = 'none';
