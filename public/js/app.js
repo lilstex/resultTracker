@@ -40,9 +40,9 @@
                 let courseInput = document.createElement('input');
                 let gradeInput = document.createElement('select');
                 let unitInput = document.createElement('input');
-                courseInput.className = 'btn btn-outline-primary mt-sm-2';
-                unitInput.className = 'btn btn-outline-primary mt-sm-2';
-                gradeInput.className = `btn btn-outline-primary  `;
+                courseInput.className = 'btn btn-outline-info';
+                unitInput.className = 'btn btn-outline-info';
+                gradeInput.className ='btn btn-outline-info';
                 courseInput.style.color = 'black';
                 unitInput.style.color = 'black';
                 gradeInput.style.color = 'black';
@@ -225,7 +225,7 @@
 
                 //for displaying the GP result
                 let resultDisplay = document.getElementById('resultDisplay');;
-                resultDisplay.innerHTML = `Your GP Calculation IS ${mgp}`;
+                resultDisplay.innerHTML = `Your G.P = ${mgp}`;
 
                 if (mgp >= 4.5) {
                     let style = {
@@ -241,7 +241,7 @@
                 } else if (mgp >= 3.5 && mgp < 4.5) {
                     let style = {
                         textAlign: 'center', margin: '5px', border: '2px solid black',
-                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#001200'
+                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#0000ff'
                     };
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;
@@ -254,7 +254,7 @@
 
                     let style = {
                         textAlign: 'center', margin: '5px', border: '2px solid black',
-                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#f19000'
+                        padding: '24px', borderRadius: '12px', color: '#ffffff', backgroundColor: '#000080'
                     };
                     Object.entries(style).map(entry => {
                         let [property, value] = entry;

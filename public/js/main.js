@@ -58,10 +58,6 @@
           scrollTop: target.offset().top - top_space
         }, 1500, 'easeInOutExpo');
 
-        if ($(this).parents('.main-nav, .mobile-nav').length) {
-          $('.main-nav .active, .mobile-nav .active').removeClass('active');
-          $(this).closest('li').addClass('active');
-        }
 
         if ($('body').hasClass('mobile-nav-active')) {
           $('body').removeClass('mobile-nav-active');
@@ -71,6 +67,12 @@
         return false;
       }
     }
+  });
+
+   // Showing active links on the navigation 
+  $(document).on('click', 'ul li', function(){
+    
+    $(this).addClass('active').siblings().removeClass('active')
   });
 
   // Navigation active state on scroll
@@ -91,6 +93,7 @@
       }
     });
   });
+
 
   // jQuery counterUp (used in Whu Us section)
   $('[data-toggle="counter-up"]').counterUp({
