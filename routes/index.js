@@ -1,47 +1,69 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({extended: false});
+let express = require('express');
+let router = express.Router();
+let Result = require('../models/result');
 
-//let data = [{coursecode:}]
-/* GET home page. */
-router.get('/', function(req, res, next) {
+
+
+
+router.get('/', function (req, res, next) {
+
   res.render('index', { title: 'ResultTracker' });
 });
 
-router.get('/app', function(req, res, next) {
-  res.render('app');
+
+
+
+
+router.post('/app', function (req, res, next) {
+let objectData = req.body;
+  delete objectData._csrf;
+  req.session.resultData = objectData;
+  req.session.gp = req.body.gp;
+  res.redirect('save');
 });
 
-let data = [];
-router.post('/app',urlencodedParser,function(req,res,next){
-  
-  let result = Object.values(req.body);
-  console.log(result)
-  res.render('dashboard',{record:result});
+router.post('/save', isLoggedIn, function (req, res, next) {
+
+  let result = new Result({
+    user: req.user,
+    semester: req.body.semester,
+    level: req.body.level,
+    year: req.body.year,
+    gp: req.session.gp,
+    resultsData: req.session.resultData
+  });
+  result.save(function (err, result) {
+    if (req.session.resultData == null) {
+      req.flash('error', 'SORRY NO CALCULATION WAS MADE');
+    } else {
+      req.session.resultData = null;
+      req.session.gp = null;
+      req.flash('success', 'Saved Successfully');
+    }
+
+    res.redirect('/dashboard');
+  });
+
+
+
 });
 
-router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard');
+
+router.get('/show', function (req, res, next) {
+  res.render('user/show');
 });
 
-router.get('/signin', function(req, res, next) {
-  res.render('signin');
-});
-
-router.get('/signup', function(req, res, next) {
-  res.render('signup');
-});
-
-router.get('/contact', function(req, res, next) {
-  res.render('contact');
-});
-
-router.get('/show', function(req, res, next) {
-  res.render('show');
-});
-
-router.get('/about', function(req, res, next) {
+router.get('/about', function (req, res, next) {
   res.render('about');
 });
+
+
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  req.session.oldUrl = req.url;
+  res.redirect('/signin');
+}

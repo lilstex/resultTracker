@@ -1,0 +1,148 @@
+<style type="text/css">
+    .avatar {
+        border-radius: 100%;
+        max-width: 200px;
+    }
+</style>
+<div class="container-fluid" style="margin-top: 90px;">
+    <div class="row">
+
+    </div>
+
+    <div class="panel panel-default text-center">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+
+
+                    <div id="primary" class="alert alert-success" {{#if noMessages}}hidden{{/if}}>
+                        {{successMsg}}
+                    </div>
+
+                    <div>
+                        {{#if hasErrors}}
+                        <div class="alert alert-danger">
+                            <ul class="list-group">
+                                {{# each messages }}
+                                <li class="list-group-item">{{this}}</li>
+                                {{/each}}
+                            </ul>
+
+                        </div>
+                        {{/if}}
+                    </div>
+
+
+                    {{#if user.image}}
+                    <img src="{{ user.image }}" width="100px" class="avatar" alt="No internet access">
+                    {{else}}
+                    <img src="img/emptyimage.jpeg" width="100px" class="avatar" alt="Add Your picture">
+                    {{/if}}
+                    <form method="post" action="/upload?_csrf={{ csrfToken }}" novalidate enctype="multipart/form-data">
+                        <div class="form-group">
+
+                            <input type="file" name="image" required>
+                        </div>
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}" re>
+                        <input type="submit" value="Upload Image" class="btn btn-primary"><br><br>
+                    </form>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <h6>{{ user.name }}</h6>
+                        </li>
+                        {{#if user.matnumber}}
+                        <li class="list-group-item">
+                            <h6>{{ user.matnumber }}</h6>
+                        </li>{{else}} {{/if}}
+
+                        <li class="list-group-item">
+                            <h6>CGPA<button class='btn btn-primary'>
+                                    {{#if cgpa}}
+                                    {{cgpa}}
+                                    {{else}}
+                                    No Grade Point</button>
+                                {{/if}}
+                        </li>
+                        </h6>
+                        </li>
+                        <hr>
+                    </ul>
+                </div>
+                <!-- Main Area Starts Here -->
+                <div class="col-sm-8">
+
+
+
+                    {{#if results}}
+                    <div class="row">
+                        {{# each results}}
+                        <div class="col-md-5 offset-md-1">
+                            <h4 class="year-text">{{ this.level }}</h4>
+                            <div class="card">
+                                <div class="card-block shadow p-5">
+
+                                    <div>
+                                        <h4>{{ this.semester }}</h4>
+                                        <br>
+                                        <h5>Your Grade Point:
+                                            <span class="badge badge-primary"
+                                                style="font-size: large;">{{ this.gp }}</span>
+                                        </h5>
+                                    </div>
+
+
+                                    <div>
+                                        <h5>
+                                            <span class="btn btn-primary" style="float:left;margin-left:10px">
+                                                <a style="color:white;" href="/view/{{ this.id }}">View</a> </span>
+                                            <span class="btn btn-danger" style="float:right;margin-right:10px">
+                                                <a id="delete" style="color:white"
+                                                    href="/delete/{{ this.id }}">Delete</a> </span>
+
+
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                        </div>
+
+
+                        {{/each}}
+
+                    </div>
+                    <div class="row">
+                        <span><a class='btn btn-primary' href="/edit">Edit Profile details</a> </span>
+                        <hr>
+                        <span><a class='btn btn-primary' href="/app">Calculate Result</a> </span>
+                        <hr>
+                    </div>
+                    <hr>
+
+
+                </div>
+                {{else}}
+                <div class="jumbotron">
+
+                    <h3>Welcome To Result Tracker
+                        <a href="/app">Click Here </a>To Start Tracking Your Results
+                    </h3>
+
+                </div>
+                <div class="row">
+                    <span><a class='btn btn-primary' href="/edit">Edit Profile details</a> </span>
+                    <hr>
+                    <span><a class='btn btn-primary' href="/app">Calculate Result</a> </span>
+                    <hr>
+                </div>
+                <hr>
+            </div>
+
+
+            {{/if}}
+            <!-- Main Area Stops Here -->
+
+        </div>
+    </div>
+</div>
